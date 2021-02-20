@@ -82,6 +82,7 @@ function elimina() {
   const colore = $("#colore").val();
   const anno = $("#anno").val();
   const targa = $("#targa").val().toUpperCase();
+  // *** fare prima la versione senza arrow function
   const pos = targhe.findIndex(e => e == targa);
   if (pos == -1)
     alert("Targa non esistente");
@@ -93,6 +94,7 @@ function elimina() {
     colori.splice(pos, 1);
     anni.splice(pos, 1);
     targhe.splice(pos, 1);
+    //***  eliminare come nel file esercizi-dom/tabella.html
     $("tr").each((i,e)=>{
       if($(e).children().eq(0).text()==pos)
         $(e).remove();
