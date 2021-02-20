@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>onclick event</title>
+    <script>
+     document.addEventListener('DOMContentLoaded', function () {
+        
+       var doc = document;
+        var f = doc.querySelector('#form');
+        /*
+         f.onsubmit = function (e) {
+            e.preventDefault();
+            var t = e.target;
+              t.style.border ='1px solid red';
+           alert( e.target.name.value);
+         };
+         */
+         function handleName(evt) {
+            console.dir(evt);
+          
+            alert('name='+evt.target.id)
+
+         }
+         function handleTable(evt) {
+             var ele = evt.target;
+             console.log(evt)
+            switch (ele.nodeName.toLowerCase()){
+                case 'button':
+                    
+                    var tr =  ele.parentNode.parentNode;
+                    tr.parentNode.removeChild(tr) 
+                    evt.preventDefault();
+                    break;
+            }
+
+         }
+        // var name =  doc.querySelector('#name');
+       //  name.addEventListener('click',  handleName, true);
+       var table=  doc.querySelector('#table');
+         table.addEventListener('click',  handleTable, true);
+         
+     
+       
+       
+     });
+    </script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+</head>
+<body>
+<table id="table" class="table table-bordered" >
+    <tr><td>test1</td><td><button class="btn btn-danger">delete1</button></td></tr>
+    <tr><td>test2</td><td><button  class="btn  btn-danger">delete2</button></td></tr>
+    <tr><td>test3</td><td><button  class="btn  btn-danger">delete3</button></td></tr>
+    <tr><td>test4</td><td><button  class="btn  btn-danger">delete4</button></td></tr>
+</table>
+
+<div class="container" id="container" style="border:1px solid red">
+ <form class="col-md-6" id="form">
+     <h2>Registration form</h2>
+     <div class="form-group">
+         <label class="col-form-label" for="name">Nome</label>
+         <input class="form-control" id="name" name="name">
+     </div>
+     <div  class="form-group">
+         <label  class="col-form-label"  for="lastname">CogNome</label>
+         <input  class="form-control" id="lastname" name="lastname">
+     </div>
+     <div  class="form-group">
+         <button id="send" class="btn btn-success btn-outline-success">Submit</button>
+     </div>
+
+ </form>
+</div>
+
+</body>
+</html>

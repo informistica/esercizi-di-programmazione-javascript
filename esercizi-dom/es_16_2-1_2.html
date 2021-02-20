@@ -1,0 +1,38 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .rosso{
+            border: 1px solid red;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded",function() {
+            document.body.style.backgroundColor = "withe";
+            let tabella=document.getElementsByTagName("table");
+        //console.log(tabella);
+        for (let i = 0; i < tabella.length; i++) {
+           // console.log(table[i].className);
+            tabella[i].className="rosso";
+        }
+        
+        });
+        
+       
+    </script>
+</head>
+<body>
+    <div>
+        <table >
+            <td>A</td>
+            <td>B</td>
+            <tr></tr>
+            <td>C</td>
+            <td>D</td>
+        </table>
+    </div>
+    
+</body>
+</html>

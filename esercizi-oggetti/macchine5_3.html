@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+  <head>
+        <!-- ***** Gestione dell'evento generato dal button  -->
+        
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title>Macchine 5</title>
+  </head>
+  <body>
+    <div class="container">
+    <br>
+    <h2>Macchine</h2>
+      <form>
+        <div class="form-group">
+          <input type="text" class="form-control" id="marca" placeholder="Inserisci la marca dell'auto">
+        </div>
+        <div class="form-group">     
+          <input type="text" class="form-control" id="modello" placeholder="Inserisci il modello dell'auto">
+        </div> 
+        <div class="form-group">     
+          <input type="text" class="form-control" id="colore" placeholder="Inserisci il colore dell'auto">
+        </div> 
+        <div class="form-group">     
+          <input type="text" class="form-control" id="anno" placeholder="Inserisci l'anno dell'auto">
+        </div> 
+        <div class="form-group">     
+          <input type="text" class="form-control" id="targa" placeholder="Inserisci la targa dell'auto">
+        </div> 
+
+        <button type="button" onclick="inviaForm()" class="btn btn-primary">Invia</button>
+      </form> 
+      <br>
+       <div id="output">
+       
+       </div>
+
+    </div>
+
+    <script>
+
+ 
+    let marca,modello,colore,anno,targa;
+    let garage = new Garage();
+    let tabella = document.createElement('table');
+    tabella.setAttribute('id','tab');
+    creaTabella();
+    //let container=  document.querySelector('#tab');
+    //container.addEventListener('click',  handleContainer, true);
+
+   
+    
+    function Automobile(marca,modello,colore,anno,targa){
+      this.marca=marca;
+      this.modello=modello;
+      this.colore=colore;
+      this.anno=anno;
+      this.targa=targa;
+      this.tutto=function(){
+        return this.marca+" "+this.modello+" " + this.colore+" " + this.anno+" "+ this.targa ;
+      }
+     }
+
+      function Garage() {
+        this.macchine= new Array();
+        this.push=function (macchina){
+          this.macchine.push(macchina);
+          return true;
+        }
+        this.cercaMacchina = function(targa) {
+          for (let i=0;i<this.macchine.length;i++) 
+            if (this.macchine[i].targa==targa)
+              return i;
+         return -1;
+        }
+        this.pop = function (targa){
+         for (let i=0;i<this.macchine.length;i++) 
+            if (this.macchine[i].targa==targa) 
+                return this.macchine[i];       
+        return false;
+        }
+        this.tutto=function() {
+          return this.macchine;
+        }  
+      }
+
+    function controllaForm() {
+      marca=document.getElementById("marca").value;
+      modello=document.getElementById("modello").value;
+      colore=document.getElementById("colore").value;
+      anno=document.getElementById("anno").value;
+      targa=document.getElementById("targa").value;
+      if ((marca=='')||(modello=='')||(colore=='')||(anno=='')||(targa==''))
+        return false;
+      else
+        return true;
+    }
+
+    function inviaForm() {
+      if (controllaForm() && garage.cercaMacchina(targa)==-1){
+        let car = new Automobile(marca,modello, colore,anno,targa);
+        garage.push(car);
+        aggiornaTabella(car);
+        console.table(garage.tutto());
+      }
+      else {
+        alert("Devi compilare tutti i campi oppure la macchina è già inserita"); 
+      }
+    }
+
+    function handleButton(evt) {
+             let ele = evt.target;
+             let td =  ele.parentNode
+             let tr = td.parentNode
+             let tabella=tr.parentNode
+             tabella.removeChild(tr) 
+             let targa=evt.target.id
+             let pos=garage.cercaMacchina(targa)
+             if (pos!=-1){
+                 garage.macchine.splice(pos,1)
+                 console.table(garage.tutto());
+             }  
+             //console.log(evt)
+             //console.log(evt.target.id)
+            
+          /* let tabella =  ele.parentNode.parentNode.parentNode;
+            tabella.removeChild(ele.parentNode.parentNode) */
+             //evt.preventDefault();
+         }
+
+    function creaTabella(){
+    let tr = document.createElement('tr');
+    tr.appendChild(document.createElement('th'));
+    tr.appendChild(document.createElement('th'));
+    tr.appendChild(document.createElement('th'));
+    tr.appendChild(document.createElement('th'));
+    tr.appendChild(document.createElement('th'));
+    tr.appendChild(document.createElement('th'));
+    tr.appendChild(document.createElement('th'));
+
+    tr.cells[0].appendChild(document.createTextNode('Num'))
+    tr.cells[1].appendChild(document.createTextNode('Marca'))
+    tr.cells[2].appendChild(document.createTextNode('Modello'))
+    tr.cells[3].appendChild(document.createTextNode('Colore'))
+    tr.cells[4].appendChild(document.createTextNode('Anno'))
+    tr.cells[5].appendChild(document.createTextNode('Targa'))
+    tr.cells[6].appendChild(document.createTextNode('Elimina'))
+    tabella.className="table";
+    tabella.appendChild(tr);
+    document.getElementById("output").appendChild(tabella)
+    }
+    
+    function aggiornaTabella(car) {
+        //let tr = document.createElement('tr');
+        let riga=tabella.insertRow(-1);
+        riga.insertCell(0).innerText=garage.macchine.length
+        riga.insertCell(1).innerText=car.marca
+        riga.insertCell(2).innerText=car.modello
+        riga.insertCell(3).innerText=car.colore
+        riga.insertCell(4).innerText=car.anno
+        riga.insertCell(5).innerText=car.targa
+        //tr.cells[5].appendChild(document.createTextNode(car.targa))
+        let btn=document.createElement('button');
+        btn.setAttribute('id',car.targa);
+        btn.className='btn btn-danger';
+        btn.appendChild(document.createTextNode('Elimina'))  
+        btn.addEventListener('click',handleButton,true)
+        let td=document.createElement('td');
+        td.appendChild(btn);
+        //riga.insertCell(6)=btn
+        riga.appendChild(td)
+        //tr.cells[6].appendChild(btn)
+       // tabella.appendChild(tr);
+    }
+   
+   
+    </script>
+    </body>
+</html>

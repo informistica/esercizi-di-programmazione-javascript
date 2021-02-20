@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Objects</h2>
+
+<p id="demo"></p>
+
+<script>
+let car,tipo,modello,colore;
+let cars = new Array();
+for (let i=0;i<3;i++){
+  tipo=prompt("Tipo?");
+  modello=prompt("Modello?");
+  colore=prompt("Colore?");
+  car = {type:tipo, model:modello, color:colore};
+  cars.push(car);
+}
+
+let out="";
+console.log(cars.length);
+for (let i=0;i<cars.length;i++){
+  out=out+ "<br>" + cars[i].type + " " + cars[i].model + " " + cars[i].color;
+  console.log(cars[i].type + " " + cars[i].model + " " + cars[i].color);
+ 
+}
+
+//document.getElementById("demo").innerHTML = "Tipo dell'auto: " + car.type;
+document.getElementById("demo").innerHTML+=out;
+</script>
+
+</body>
+</html>

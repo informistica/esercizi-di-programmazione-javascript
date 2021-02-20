@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabella dinamica</title>
+     <!-- Bootstrap CSS -->
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+</head>
+<body>
+<div class="container">
+    <div id="demo">
+
+    </div>
+</div>
+</body>
+<script>
+var h1 = document.createElement("h1")                // Crea elmento <h1> 
+var t = document.createTextNode("Hello World");     // Crea nodo di testo 
+h1.appendChild(t);                                   // Appende ad <H1> il testo
+document.body.appendChild(h1);  
+                                      // Appende al body l'elento <H1>
+
+var ul = document.createElement("ul")                // Crea elmento <h1> 
+var li = document.createElement("li") 
+var t1 = document.createTextNode("Hello");               // Create nodo di testo 
+li.appendChild(t1); 
+ul.appendChild(li);                                   // Appende ad <H1> il testo
+document.body.appendChild(ul); 
+
+
+var ol = document.createElement("ol")  
+for (let i=0;i<5;i++){
+    li=document.createElement("li");
+    li.appendChild(document.createTextNode(i));
+    ol.appendChild(li); 
+} 
+document.body.appendChild(ol); 
+
+var btn = document.createElement("button")                // Crea elmento <h1> 
+btn.innerHTML="Click me"     // Create nodo di testo 
+btn.className="btn-success";
+btn.addEventListener("click", function(){
+  //document.getElementById("demo").innerHTML = "Clicked!";
+  alert("Clicked!")
+});                                 
+document.body.appendChild(btn); 
+</script>
+</html>

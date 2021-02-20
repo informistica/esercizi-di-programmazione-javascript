@@ -1,0 +1,61 @@
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var menu=[
+            {
+                url:"http://google.it",
+                title:"google.it"
+
+            },
+            {
+                url:"http://google.it",
+                title:"google.it"
+
+            },
+            {
+                url:"http://google.it",
+                title:"google.it"
+
+            },
+            {
+                url:"http://google.it",
+                title:"google.it"
+
+            },
+        ]
+
+
+document.addEventListener("DOMContentLoaded",function() {
+
+let doc=document;
+let ul=doc.createElement("ul");
+ //Cicliamo per creare la lista
+ menu.forEach(function(ele){
+     //creiamo tutte le parti da inserire nella lista
+let li=doc.createElement("li");
+let a=doc.createElement("a");
+a.href=ele.url;
+a.setAttribute("title",ele.title);
+let text =doc.createTextNode(ele.title);
+//mettiamo text in a
+a.appendChild(text);
+//mettiamo a in li
+li.appendChild(a);
+//mettiamo li in ul
+ul.appendChild(li);
+ });
+ //aggiungiamo la lista al DOM
+     doc.body.appendChild(ul);
+ 
+
+});
+
+    </script>
+</body>
+</html>

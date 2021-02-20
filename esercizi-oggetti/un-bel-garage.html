@@ -1,0 +1,49 @@
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+     <title>Document</title>
+ </head>
+ <body>
+     
+ </body>
+ </html>
+ <script>
+ function Automobile(marca,modello){  
+    //console.log(this);
+    this.marca = marca;
+    this.modello = modello;
+  }
+
+var n,ma,mo,auto;
+var macchine = new Array()
+n=prompt("Quante auto vuoi inserire?")
+for (let i=0;i<n;i++){
+  ma=prompt("Marca?");
+  mo=prompt("Modello?");
+  auto= new Automobile(ma,mo);
+  macchine.push(auto);
+}
+//var cane1 = new  Animal('Cane1');
+//var cane2 = new  Animal('Cane2');
+//var cani = new Array();
+//cani.push(cane1);
+//cani.push(cane2);
+//cani[0]=cane1;
+//cani[1]=cane2;
+//console.log(cani.length);
+//for (var animale in cani) {
+
+for (var i=0;i<macchine.length;i++) {
+  console.log(macchine[i].marca + " "+ macchine[i].marca  );
+}
+
+ 
+
+//console.log(abitat);
+
+//console.log(window.abitat);
+
+</script>

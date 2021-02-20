@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tanti numeri</title>
+</head>
+<body>
+    <input type="number" id="input_num" placeholder="Quanti elementi?" min="2"><br>
+    <button onclick="calcolaMedia();">Media</button><br>
+    <button onclick="minoriMedia();">Minori della media</button><br>
+</body>
+<script>
+ 
+let voti = []; // creo array originale vuoto 
+let media;
+
+function calcolaMedia() {
+    let numElem=document.getElementById("input_num").value;
+    let somma=0;
+    //riempio array originale
+    for (let index = 0; index < numElem; index++) {
+        numRandom = Math.floor(Math.random()*10 +1);
+        voti[index]= numRandom; 
+        console.log(voti[index]);
+    }
+    //creo array ordinato in modo crescente
+     for (let i = 0; i < voti.length; i++)
+       somma+=voti[i]
+    media=somma/numElem;
+    console.log("Media dei voti:"+media);  
+}
+
+function minoriMedia() {
+    let contMin=0;
+    console.log("Numeri minori della media :");  
+    for (let i = 0; i < voti.length; i++){
+        if (voti[i]<media) {
+            contMin++;
+            console.log(voti[i]);
+        }
+    }
+    console.log("Totale voti minori della media:"+contMin);
+    
+}
+</script>
+</html>

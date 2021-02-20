@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Invertimi</title>
+</head>
+<body>
+    <input type="number" id="input_num" placeholder="Quanti elementi?" min="2">
+    <button onclick="calcola();">Conferma</button>
+</body>
+<script>
+function calcola () {
+    let numElem=document.getElementById("input_num").value;
+    //alert(numElem);
+    let vet = []; // creao array originale vuoto
+    let vetInv = []; // creao array invertito vuoto
+    //riempio array
+    for (let index = 0; index < numElem; index++) {
+        numRandom=Math.floor(Math.random()*10 +1);
+       // console.log(numRandom);
+        vet[index]= numRandom; 
+    }
+    //creo array invertito
+    for (let index = 0; index < numElem; index++) {
+        vetInv[index]= vet[numElem - 1 - index];
+    }
+
+    //visualizzo i due array
+    console.log("Array originale");
+    for (let index = 0; index < numElem; index++) {
+        console.log(vet[index]);
+    }
+    console.log("Array invertito");
+    for (let index = 0; index < numElem; index++) {
+        console.log(vetInv[index]);
+    }
+
+    
+}
+</script>
+</html>

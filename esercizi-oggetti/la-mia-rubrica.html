@@ -1,0 +1,108 @@
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+     <title>Rubrica 1</title>
+ </head>
+ <body>
+     
+ </body>
+ </html>
+ <script>
+/*
+es. La mia rubrica 1
+
+
+
+  Scrivi un programma per la gestione di una rubrica telefonica.
+
+  Definisci un oggetto che rappresenti un contatto, l'unico vincolo è di inserire almeno il nome e il numero di telefono come stringhe.
+
+  Definisci un altro oggetto che rappresenti la lista dei contatti (array di oggetti contatto).
+  Implementa i metodi dell'oggetto per le seguenti operazioni:
+      - Inserimento di un nuovo contatto
+      - Visualizzazione dell'intera lista contatti
+      - Modifica di uno contatto passando in input l'indice della posizione nell'array
+      - Cancellazione di un contatto passando in input l'indice della posizione nell'array
+      - Ricerca passando il nome e restituendo tutti i dati del singolo contatto.
+*/
+
+ 
+
+function Rubrica(contatto){  
+    this.contatti= new Array();
+    this.add=function (contatto){
+        this.contatti.push(contatto);
+    }
+    this.lista = function (){
+        let tutto="";
+        for(let i=0; i<this.contatti.length;i++) 
+            tutto=tutto+"\n"+this.contatti[i]["cognome"] + " "+this.contatti[i].nome + " "+this.contatti[i].telefono+ " "+ this.contatti[i].email;
+        return(tutto);
+    }
+    this.modifica = function (indice,cognome,nome,telefono,email){
+        if (indice>=this.contatti.length)
+            return("Indice fuori dall'intervallo max="+(this.contatti.length-1))
+        else {
+            if (nome!='')
+                 this.contatti[indice].nome=nome;
+            if (cognome!='')
+                this.contatti[indice].cognome=cognome;
+            if (telefono!='')
+                this.contatti[indice].telefono=telefono;
+            if (email!='')
+                this.contatti[indice].email=email;
+            return true;
+        }
+    }
+    this.cercaNome = function (nome){
+        for(let i=0; i<this.contatti.length;i++) {
+            if (this.contatti[i].nome==nome){
+                return this.contatti[i].nome + "," + this.contatti[i].cognome + "," + this.contatti[i].telefono + "," + this.contatti[i].email;
+            }
+        }
+        return ("Nome non trovato");
+    }
+    this.elimina = function (indice){
+        if (indice>=this.contatti.length)
+            return("Indice fuori dall'intervallo max="+(this.contatti.length-1))
+        else {
+            this.contatti.splice(indice,1);
+            return ("eliminato");
+        }
+    }
+
+    console.log(this);
+  }
+
+ function Contatto(cognome,nome,telefono,email){  
+    this.cognome = cognome;
+    this.nome = nome;
+    this.telefono = telefono;
+    this.email = email;
+    function tutto(){
+        return(this.nome+";"+this.voto+" "+this.ore);
+    }
+    //console.log(this);
+  }
+
+
+var rubric= new Rubrica();
+var cont1 = new Contatto("Rossi","Mario","23242332","email@lamiamail.it");
+var cont2 = new Contatto("Verdi","Piero","02323332","email2@lamiamail2.it");
+rubric.add(cont1);
+rubric.add(cont2);
+console.log("Tutti i contatti:"+rubric.lista());
+console.log("modifica out="+rubric.modifica(0,"Rossi2","Mario2","9923242332","2email@lamiamail.it"));
+console.log("modifica out="+rubric.modifica(1,"Verdi2","Piero2","9902323332","2email2@lamiamail2.it"));
+console.log(rubric.lista());
+console.log(rubric.cercaNome("Mario"));
+console.log(rubric.cercaNome("Mario2"));
+console.log(rubric.elimina(0));
+console.log(rubric.lista());
+
+
+ 
+</script>

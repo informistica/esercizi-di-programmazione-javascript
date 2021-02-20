@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <title>Anni</title>
+    </head>
+
+    <body>
+        <h1>Anni</h1>
+        <script>
+            let AnnoCorr = Number(prompt("Inserisci anno corrente"));
+            let AnnoNasci = Number(prompt("Inserisci anno di nascita "));
+
+            x = anno(AnnoCorr,AnnoNasci);  
+            let anni = x;
+            y = anno1(AnnoNasci,anni);
+
+            function anno(AnnoCorr,AnnoNasci) {
+            x=AnnoCorr-AnnoNasci;
+                alert("Hai "+x+" anni");
+                return x;
+            }
+            
+            function anno1(AnnoNasci,anni) {
+            y=100-anni;
+                alert("Ne mancano "+y);
+            }
+
+        </script>
+    </body>
+
+
+</html>

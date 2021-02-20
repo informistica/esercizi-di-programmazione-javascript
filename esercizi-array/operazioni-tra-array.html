@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Operazioni tra array</title>
+</head>
+<body>
+    <input type="number" id="inputNum" placeholder="Quanti elementi?" min="2"><br>
+    <button onclick="generaArray();">Genera array</button><br>
+    <select id="operazione" disabled onchange="calcola();">
+        <option value=0>Scegli operazione</option>
+        <option value=1>Somma</option>
+        <option value=2>Moltiplicazione</option>
+        <option value=3>Differenza</option>
+        <option value=4>Divisione</option>
+
+    </select>
+</body>
+<script>
+// creo array vuoti 
+let vetNum1=[];
+let vetNum2=[];
+let vetRisultati=[];
+  
+
+function generaArray() {
+    let numElem=document.getElementById("inputNum").value;
+    let somma=0;
+    //riempio array originale
+    console.log("V1  V2");
+    for (let index = 0; index < numElem; index++) {
+        vetNum1[index]= Math.floor(Math.random()*10 +1);
+        vetNum2[index]= Math.floor(Math.random()*10 +1);
+        console.log(vetNum1[index] + "  " + vetNum2[index]);
+    }
+    document.getElementById("operazione").disabled=false;  
+}
+
+function calcola() {
+    //alert(document.getElementById("operazione").value);
+    let operazione=Number(document.getElementById("operazione").value);
+  
+    if (operazione!=0){
+        switch (operazione) {
+            case 1:
+                alert("somma");
+                risultati("+");
+                break;
+            case 2:
+                alert("Moltiplicazione");
+                risultati("*");
+                break;
+            case 3:
+                alert("Differenza");
+                risultati("-");
+                break;
+            case 4:
+                alert("Divisione");
+                risultati("/");
+                break;    
+            default:
+                break;
+        }
+    }
+    else 
+      alert("Devi scegliere un operazione");  
+}
+
+function risultati(operazione) {
+    //console.log(10+operazione+2);
+    console.log("V1"+operazione+"V2");
+    for (let index = 0; index < vetNum1.length; index++) {
+        vetRisultati[index]=eval(vetNum1[index]+operazione+vetNum2[index]);  
+        console.log(vetRisultati[index]);
+           
+    }
+    document.getElementById("operazione").selectedIndex=0;
+    
+}
+</script>
+</html>

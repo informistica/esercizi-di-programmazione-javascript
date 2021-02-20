@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+    <title>Somma e Media</title>
+   
+</head>
+<body>
+    <h1>Somma e Media</h1>
+    <script>
+        let n1, n2, n3, n4, n5;
+
+        n1= Number(prompt("inserisci il primo numero"));
+        n2= Number(prompt("inserisci il primo numero"));
+        n3= Number(prompt("inserisci il primo numero"));
+        n4= Number(prompt("inserisci il primo numero"));
+        n5= Number(prompt("inserisci il primo numero"));
+
+        let x=somma(n1,n2,n3,n4,n5);
+            alert("la somma è: "+x);
+        
+
+        function somma(n1, n2, n3, n4, n5){
+            return n1+n2+n3+n4+n5;
+        }
+
+        let y=media(n1,n2,n3,n4,n5);
+            alert("la media è: "+y);
+        
+
+        function media(n1, n2, n3, n4, n5){
+            return (n1+n2+n3+n4+n5)/5;
+        }
+
+
+    </script>
+</body>
+</html>

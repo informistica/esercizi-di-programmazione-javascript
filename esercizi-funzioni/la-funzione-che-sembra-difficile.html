@@ -1,0 +1,45 @@
+<!--
+  La funzione che sembra difficile
+  Scrivi una funzione che prenda in input due numeri N e K e restituisca:
+  1) la k-esima cifra (partendo da destra) di N
+  2) la sottostringa di input senza K caratteri (partendo da destra)
+  3) il numero N, (partendo da destra) ogni carattere su una riga diversa
+  Se K è maggiore del numero delle cifre di N, la funzione restituirà 0.
+
+  Esempio:
+    Input : N = 123456, K = 3
+    Output: 4
+    Output 2: 123
+    Output 3: 
+        6
+        5
+        4
+        3
+        2
+        1
+  Consiglio :
+  Gestisci N come stringa ed utilizza la funzione substring.
+ -->
+ <html>
+     <head>
+            <meta charset="utf-8">
+     </head>
+ </html>
+ <script>
+ var n=String(prompt("Inserisci N:"));
+ var k=String(prompt("Inserisci K:"));
+
+
+if (k>n.length)
+ console.log("0");
+ else{
+     console.log("Input : " + n + " " + k);
+     console.log("output:"+n[n.length-k]);
+     console.log("output2:"+n.substr(0,n.length-k));
+     for (let i=0; i<n.length;i++)
+        console.log(n[n.length-i-1]);
+     
+ } 
+
+
+ </script>

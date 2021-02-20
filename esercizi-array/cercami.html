@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Cercami</title>
+</head>
+<body>
+    <input type="number" min="2" max="100" id="inputNum" placeholder="Quanti elementi nel vettore?"><br>
+    <input type="text" placeholder="Inserisci numero da cercare" id="findNum"><br>
+    <button onclick="generaArray();">Cerca</button>
+</body>
+<script>
+    let vetNum=[];
+    function generaArray() {
+       
+        let numero=document.getElementById("findNum").value;
+        let numElem=document.getElementById("inputNum").value;
+        let numOccorrenze=0;
+        for (let index = 0; index < numElem; index++) { 
+            vetNum[index]= Math.floor(Math.random()*10 +1);
+            console.log(vetNum[index]);
+        }
+        numOccorrenze=cercaNumero(numero);
+        console.log("numOcco="+numOccorrenze);
+        if (numOccorrenze>0){
+          if (numOccorrenze==1)
+             console.log("Il numero "+ numero + " compare " + numOccorrenze + " volta nell'array");
+          else
+             console.log("Il numero "+ numero + " compare " + numOccorrenze + " volte nell'array");
+        }     
+        else
+            console.log("Il numero "+ numero + " non compare nell'array");
+    }
+    function cercaNumero(num) {
+        let n=0;
+        for (let index = 0; index < vetNum.length; index++) {
+             if (vetNum[index]==num)
+                n++;
+        }
+        return n;       
+    }
+</script>
+</html>

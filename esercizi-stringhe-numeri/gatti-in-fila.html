@@ -1,0 +1,19 @@
+<html>
+<head>
+   
+    <title>Gatti</title>
+   
+</head>
+<body>
+    <script>
+    GattiTot = Number(prompt("Inserisci il numero di gatti"));
+    GattiFil = Number(prompt("Inserisci il numero di gatti presenti in ogni fila"));
+    x=GattiTot/GattiFil;
+    x=Math.ceil(x);
+    y=(x*GattiFil)-GattiTot;
+    alert("Numero file "+x);
+    alert("Numero gatti mancanti "+y);
+     
+    </script>
+</body>
+</html>

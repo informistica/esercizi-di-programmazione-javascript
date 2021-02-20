@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset='utf-8'>
+    <title>Giorno più caldo e più freddo</title>
+</head>
+<body>
+    <h1>Giorno più caldo e più freddo</h1>
+    <script>
+        //dichiarazioni delle variabili
+        let temperatura;
+        let i;
+        let caldo = 0;
+        let freddo = 0;
+        //eseguo un ciclo per i 7 giorni della settimana
+        for (i = 0; i < 7; i++) {
+            //leggo il valore della temperatura e controllo la validità
+            //se l'input non è valido viene chiesto nuovamente
+            do {
+                temperatura = Number(prompt("inserisci la temperatura del giorno " + (i + 1)));
+            if (isNaN(temperatura)) document.write("<br>Inserisci un numero!");
+            } while (isNaN(temperatura));
+            //visualizzo il valore inserito
+            document.write("<br> "+(i+1)+" Temperatura:"+ temperatura);
+            //il primo valore inserito è sia il massimo che il minimo
+            if (i === 0) {
+                caldo = temperatura;
+                freddo = temperatura;
+            }
+            //controllo se il valore inserito è maggiore del massimo ed in tal caso diventa il nuovo massimo
+            if (caldo < temperatura) {
+                caldo = temperatura;
+            }
+            //controllo se il valore inserito è minore del minimo ed in tal caso diventa il nuovo minimo
+            if (freddo > temperatura) {
+                freddo = temperatura;
+            }
+        }  
+        //mostro in output le temperature max e min
+        document.write("<br>Temperatura nel giorno più caldo :"+ caldo);
+        document.write("<br>Temperatura nel giorno più freddo :"+ freddo);
+    </script>
+</body>
+
+
+</html>

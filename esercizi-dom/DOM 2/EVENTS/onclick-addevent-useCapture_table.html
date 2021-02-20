@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>onclick event</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+<table id="table" class="table table-bordered" >
+    <tr><td>test1</td><td><button class="btn btn-danger">delete1</button></td></tr>
+    <tr><td>test2</td><td><button  class="btn  btn-danger">delete2</button></td></tr>
+    <tr><td>test3</td><td><button  class="btn  btn-danger">delete3</button></td></tr>
+    <tr><td>test4</td><td><button  class="btn  btn-danger">delete4</button></td></tr>
+</table>
+</body>
+</html>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        function handleTable(evt) {
+            var ele = evt.target;
+            console.log(ele.attributes.class.value);
+            console.log(ele.nodeName.toLowerCase());
+            switch (ele.nodeName.toLowerCase()){
+               case 'button':
+                   let td = ele.parentNode;
+                   console.log(td);
+                  // let tr =  ele.parentNode.parentNode;
+                   let tr = td.parentNode;
+                   console.log(tr);
+                   //console.log(tr.parentNode);
+                   let tbody = tr.parentNode;
+                   console.log(tbody);
+                  // tr.parentNode.removeChild(tr) 
+                   tbody.removeChild(tr); 
+                   //evt.preventDefault();
+                   break;
+           }
+        }
+      var table =  document.querySelector('#table');
+        table.addEventListener('click',  handleTable, true);
+    });
+   </script>

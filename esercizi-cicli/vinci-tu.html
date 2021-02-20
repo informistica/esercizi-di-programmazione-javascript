@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+
+    <title>Dadi</title>
+
+</head>
+
+<body>
+    <h1>Dadi</h1>
+    <script>
+        let cas;
+        let num1 = 0;
+        let num2 = 0;
+        let tiri = Number(prompt("Inserisci il numero di tiri da effettuare."));
+        for (let i = 0; i < tiri; i++) {
+            cas = Math.floor((Math.random() * 6) + 1);
+            num1 += cas;
+            alert("giocatore 1,è capitato il numero " + cas);
+        }
+        for (let i = 0; i < tiri; i++) {
+            cas = Math.floor((Math.random() * 6) + 1);
+            num2 += cas;
+            alert("giocatore 2, è capitato il numero " + cas);
+        }
+        alert("Il giocatore 1 ha totalizzato " + num1 + " punti");
+        alert("Il giocatore 2 ha totalizzato " + num2 + " punti");
+
+        if (num1 == num2)
+            alert("Avete pareggiato");
+        else {
+            if (num1 > num2)
+                alert("Ha vinto il giocatore 1");
+            else
+                alert("ha vinto il giocatore 2");
+        }
+
+    </script>
+</body>
+
+</html>

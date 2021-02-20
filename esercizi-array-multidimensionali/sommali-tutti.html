@@ -1,0 +1,70 @@
+<!--  Sommali tutti
+  Scrivi un programma che:
+    - Prenda in input due numeri, N e M.
+    - Generi una matrice di NxM popolata di valori casuali da 1 a 100.
+    - Stampi la matrice e la somma di tutti i valori contenuti.
+
+    Esempio:
+      Input: N = 2, M = 3
+      Output:
+        matrice =
+        [
+          [1, 50, 100],
+          [1, 20, 40],
+        ]
+        somma = 212
+
+  http://www.imparareaprogrammare.it
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sommali tutti</title>
+</head>
+<body>
+    <script>
+        var n=Number(prompt("Inserisci dimensione N (num righe):"));  
+        var m=Number(prompt("Inserisci dimensione M (num colonne):"));
+        //var n=2,m=3;
+        var matrice = new Array(n);
+        for (var i = 0; i < matrice.length; i++) {
+            matrice[i] = new Array(m);
+        }
+
+        var x,y,somma=0; 
+        for (x=0; x<n; x++)
+        {   document.write("<br>");
+            for (y=0; y<m; y++)
+            {
+                matrice[x][y] = Math.trunc(Math.random()*100 + 1);
+                somma+=matrice[x][y];
+                document.write(matrice[x][y]+" # ");
+            }
+        }
+        document.write("<table border=1>");
+
+        for (x=0; x<n; x++)
+        {   document.write("<tr>");
+            for (y=0; y<m; y++)
+            {
+                matrice[x][y] = Math.trunc(Math.random()*100 + 1);
+                somma+=matrice[x][y];
+                document.write("<td>");
+                document.write(matrice[x][y]);
+                document.write("</td>");
+            }
+            document.write("</tr>");
+        }
+
+        document.write("</table>");
+        document.write("Somma="+somma);
+
+
+
+    </script>
+</body>
+</html>

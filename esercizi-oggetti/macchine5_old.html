@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Esempio</title>
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">  
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+  <meta charset="UTF-8">
+  </head>
+  <body>
+    <div class="container">
+        <!-- Interfaccia grafica -->
+        <form>
+            <div class="form-group">
+            <label>Macchina</label>
+            <input type="text" class="form-control" id="marca"  placeholder="Marca">
+            </div>
+            <div class="form-group">
+            <input type="text" class="form-control" id="modello"  placeholder="Modello">
+            </div>
+            <div class="form-group"> 
+            <input type="text" class="form-control" id="colore"  placeholder="Colore">
+            </div>
+            <div class="form-group">
+            <input type="text" class="form-control" id="anno"  placeholder="Anno">
+            </div>
+            <div class="form-group">
+            <input type="text" class="form-control" id="targa"  placeholder="Targa">
+            </div>
+            <div class="form-group">
+            <button type="button" onclick="inviaForm()" class="btn btn-primary">Inserisci</button>
+            </div>
+        </form>
+        <div id="tabella">
+            <!-- Per mostrare la tabella delle macchine inserite -->
+        </div>    
+    </div>
+  </body> 
+<script> 
+//controlla che tutti i campi siano compilati
+function controllaForm() {
+    marca=document.getElementById("marca").value;
+    modello=document.getElementById("modello").value;
+    colore=document.getElementById("colore").value;
+    anno=document.getElementById("anno").value;
+    targa=document.getElementById("targa").value;
+    if ((marca=='') || (modello=='') || (colore=='')  || (anno=='') || (targa==''))
+        return false;
+    else
+        return true;
+}
+//inserisce la macchina nel garage
+function inviaForm() {
+    if (controllaForm())
+    {
+      let car;
+      if (garage.cercaMacchina(targa)){ //se è presente non aggiungo la macchina al garage
+        alert("Macchina già inserita")
+      } else {//se non è presente la aggiungo 
+        car = new Automobile(marca,modello,colore,anno,targa); 
+        garage.push(car);
+        alert("Macchina aggiunta");
+        console.log("TUTTO garage:");
+        console.table(garage.tutto());
+      }
+      aggiornaTabella();
+    }
+    else
+     alert("Compila tutti i campi");
+}  
+//costruttore macchine
+function Automobile(marca,modello,colore,anno,targa){  
+    //console.log(this);
+    this.marca = marca;
+    this.modello = modello;
+    this.colore = colore;
+    this.anno = anno;
+    this.targa = targa;
+  }
+//costruttore garage
+  function Garage(){  
+    this.macchine = new Array();
+    this.push = function (macchina){
+        this.macchine.push(macchina);
+        return true;
+    }
+    this.pop = function (targa){
+         for (let i=0;i<this.macchine.length;i++){
+            if (this.macchine[i].targa==targa){
+                return this.macchine[i];
+            }
+        }
+        return false;
+    }
+    this.cercaMacchina = function (targa){
+        for (let i=0;i<this.macchine.length;i++){
+            if (this.macchine[i].targa==targa){
+                return true;
+            }
+        }
+        return (false);
+    } 
+    this.tutto = function (){
+        return this.macchine;
+    }
+    console.log(this);
+  }
+  //Aggiorna la tabella di output delle macchine inserite
+function aggiornaTabella() {
+let tab=garage.tutto(); //restituisce l'array di oggetti Automobile
+let tabString='<br><br><table class="table" border=1><tr><th>Marca</th><th>Modello</th><th>Colore</th><th>Anno</th><th>Targa</th></tr>';
+let car;
+    //per ogni oggetto Macchina presente nell'array tab
+    for (let i=0;i<tab.length;i++){
+        car=tab[i];
+        tabString+='<tr><td>'+car.marca+'</td><td>'+car.modello+'</td><td>'+car.colore+'</td><td>'+car.anno+'</td><td>'+car.targa+'</td>';
+        tabString+='</tr>'
+    }
+tabString+='</table>';
+document.getElementById("tabella").innerHTML=tabString;   
+} 
+
+// creo un oggetto garage
+let garage=new Garage();
+let marca,modello,colore,anno, targa;
+console.log("TUTTO:");
+console.log(garage.tutto());
+</script>
+
+  
+ 
+</html>

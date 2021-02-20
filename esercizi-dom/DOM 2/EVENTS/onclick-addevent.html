@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>oncli event</title>
+    <script>
+     document.addEventListener('DOMContentLoaded', function () {
+        
+       var doc = document;
+        var f = doc.querySelector('#form');
+        /*
+         f.onsubmit = function (e) {
+            e.preventDefault();
+            var t = e.target;
+              t.style.border ='1px solid red';
+           alert( e.target.name.value);
+         };
+         */
+         function handleForm(evt) {
+             evt.preventDefault();
+             evt.target.style.border="2px solid green";
+
+         }
+        f.addEventListener('submit' ,handleForm);
+        f.removeEventListener('submit', handleForm);
+     });
+    </script>
+    <link rel="stylesheet" href="../../css/bootstrap.css">
+</head>
+<body>
+<div class="container">
+ <form class="col-md-6 push-md-3" id="form">
+     <h2>Registration form</h2>
+     <div class="form-group">
+         <label class="col-form-label" for="name">Nome</label>
+         <input class="form-control" id="name" name="name">
+     </div>
+     <div  class="form-group">
+         <label  class="col-form-label"  for="lastname">CogNome</label>
+         <input  class="form-control" id="lastname" name="lastname">
+     </div>
+     <div  class="form-group">
+         <button class="btn btn-success btn-outline-success">Submit</button>
+     </div>
+
+ </form>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestione azienda</title>
+</head>
+<body>
+    <script>
+
+        var valoreAttuale;
+
+        function calcola() {  
+            var operazione = arguments[0]; 
+            var risultato = arguments[1]; 
+            var output = valoreAttuale;
+            var valoreIniziale = 1;
+            var somma = 0;
+            var messaggio;
+
+            if (isNaN(arguments[0])) {
+                var primaVolta = false;
+                var operazione = arguments[0];
+            }
+            else {
+                var primaVolta = true;
+                valoreAttuale = arguments[0];
+                operazione = arguments[1];
+                valoreIniziale = 2;
+                console.log("Valore attuale: " + valoreAttuale);
+            }
+
+            for (i = valoreIniziale; i < arguments.length; i++) {
+                switch (operazione) {
+                    case '+':
+                        valoreAttuale += arguments[i]
+                        somma += arguments[i];
+                        messaggio = "<br> Somma: "
+                        break;
+                    case '-':
+                        valoreAttuale -= arguments[i]
+                        somma += arguments[i];
+                        messaggio = ";<br> Differenza: "
+                        break;
+                    /*case 'moltiplicazione':
+                        risultato *= arguments[i]
+                        break;
+                    case 'divisione':
+                        risultato /= arguments[i]
+                        break;*/
+                }
+
+                output = valoreAttuale;
+            }
+            document.write(messaggio + somma);
+            document.write(";<br> Valore attuale: " + output + ".");
+        }
+        //Funzioni chiamate:
+        calcola(10, '+', 2, 3, 4) 
+        calcola('+', 2, 4, 5)
+        calcola('-', 5, 2, 3)
+
+
+
+    </script>
+    <h1>Gestione azienda</h1>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabella dinamica</title>
+     <!-- Bootstrap CSS -->
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+</head>
+<body>
+<div class="container">
+    <div id="demo">
+
+    </div>
+</div>
+</body>
+</html>
+<script>
+ 
+//riferimento al contenitore in cui sarà inserita la tabella
+let tablearea = document.getElementById('demo');
+//creo un elemento tabella
+    table = document.createElement('table');
+let numCol=4,numRow=6;
+
+//creo prima riga di intestazione della tabella
+let tr = document.createElement('tr');
+//per ogni colonna creo un elemento th e la aggiungo alla riga
+  for (var i = 0; i < numCol; i++) {
+   //creo th e aggiungo alla riga corrente
+   tr.appendChild(document.createElement('th') );
+   // creo elemento di testo e lo aggiungo alla cella della tabella
+   tr.cells[i].appendChild(document.createTextNode('Col'+i) )
+   // alternativa : aggiungo alla cella della tabella il suo html
+   // tr.cells[i].innerHTML='<th>Col'+i+'</th>';
+}
+  // creo ultima colonna con intestazione personalizzata
+  tr.appendChild(document.createElement('th') );
+  tr.cells[i].appendChild(document.createTextNode('Elimina') )
+  //alternativa : aggiungo alla cella della tabella il suo html
+  //tr.cells[i].innerHTML='<th>Elimina</th>';
+  //riga di intestazione completata la aggiungo alla tabella
+  table.appendChild(tr);
+
+//generazione dinamica della tabella
+for (var i = 0; i < numRow; i++) {
+  tr = document.createElement('tr');
+  for (var j = 0; j < numCol; j++) {
+    tr.appendChild(document.createElement('td'));
+    tr.cells[j].appendChild(document.createTextNode('Text '+i+j))
+    //tr.cells[j].innerHTML='Text '+i+j;
+  }
+  //come ultima colonna creo il bottone per eliminare la riga
+  let btn=document.createElement('button');
+  btn.setAttribute('id',i);
+  btn.className='btn btn-danger';
+  btn.appendChild(document.createTextNode('Elimina'))  
+  btn.addEventListener('click',handleButton,true)
+  let td=document.createElement('td');
+  td.appendChild(btn);
+  tr.appendChild(td)
+  table.appendChild(tr);
+}
+
+table.className="table";
+tablearea.appendChild(table);
+ 
+function handleButton(evt) {
+//dall'evento generato risale l'albero fino alla tabella
+//bottone->cella -> riga -> tabella
+            let ele = evt.target; //btn che ha generato l'evento
+                 
+             let td =  ele.parentNode //colonna a cui appartiene btn
+             let tr = td.parentNode // riga a cui appartiene btn
+             let tabella=tr.parentNode //tabella a cui appartiene btn
+             tabella.removeChild(tr) //rimuove la riga che contiene btn
+             console.log("Evento generato dal bottone con id=")
+             console.log(evt.target.id)  
+             console.log("Tipo di evento generato:")
+             console.log(evt)
+             
+            //alternativa
+        /* let tabella =  ele.parentNode.parentNode.parentNode;
+             tabella.removeChild(ele.parentNode.parentNode)  */
+             //evt.preventDefault();
+         }
+</script>

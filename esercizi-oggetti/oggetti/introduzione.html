@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Introduzione agli oggetti</title>
+</head>
+
+<body>
+    <script>
+        let n = 100;
+
+        let persona1 = { nome: "John", cognome: "Doe", anni: 50, altezza: 180 };
+        let persona2 = {
+            nome: "Mario",
+            cognome: "Rossi",
+            anni: 25,
+            altezza: 167,
+            tutto: function () {
+                return (this.nome + ";" + this.cognome + ";" + this.anni + ";" + this.altezza);
+            },
+        };
+
+
+        let persone = new Array();
+        //metodi per gli array
+        //https://developer.mozilla.org/it/docs/Web/JavaScript/Reference/Global_Objects/Array
+
+        persone.push(persona1);
+        persone.push(persona2);
+
+        console.log(persone[0].nome);
+        console.log(persone[0].cognome);
+        console.log(persone[0].altezza);
+        console.log(persone[1].nome);
+        console.log(persone[1].cognome);
+        console.log(persone[1].altezza);
+
+        for (let i = 0; i < persone.length; i++) {
+            console.log(persone[i].nome);
+            console.log(persone[i].cognome);
+            console.log(persone[i].altezza);
+        }
+
+        persone[0].nome = "Rossi";
+        persone[0].cognome = "Guido";
+        persone[0].altezza = "verdi";
+
+        ////////
+
+
+        function Persona(nome, cognome, anni, altezza) {
+            this.nome = nome;
+            this.cognome = cognome;
+            this.anni = anni;
+            this.altezza = altezza;
+
+            this.tutto = function () {
+                return (this.nome + ";" + this.cognome + ";" + this.anni + ";" + this.altezza);
+            }
+            console.log("output this:");
+            console.log(this);
+        }
+
+
+        let a = prompt("Nome  ?");
+        let b = prompt("Cognome  ?");
+        let c = parseInt(prompt("Anni  ?"));
+        let d = Number(prompt("Altezza  ?"));
+
+        let persona3 = new Persona(a, b, c, d);
+        persone.push(persona3);
+        console.log("Tutto " + persone[2].tutto());
+        console.log(persona2);
+        console.log(persona3);
+        console.log(persone[2]);
+
+        console.table(persone);
+
+
+    </script>
+</body>
+
+</html>

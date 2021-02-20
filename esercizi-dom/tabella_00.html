@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <style>
+        .table{
+            border:1pt;
+            background-color: azure;
+        }
+    </style>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabella dinamica</title>
+     <!-- Bootstrap CSS -->
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+</head>
+<body>
+<div class="container">
+    <div id="demo">
+
+    </div>
+</div>
+</body>
+<script>
+ 
+
+let tablearea = document.getElementById('demo'),
+    table = document.createElement('table');
+    table.className="table";
+
+ 
+let tr = document.createElement('tr')
+let td = document.createElement('td')
+let text=document.createTextNode('Testo')
+td.appendChild(text)
+tr.appendChild(td)
+table.appendChild(tr)
+tablearea.appendChild(table)
+
+
+
+
+</script>
+</html>

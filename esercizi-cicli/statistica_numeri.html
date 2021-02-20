@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statistica numeri</title>
+</head>
+<body>
+    <!--
+        Data in input una sequenza di N numeri positivi e negativi, comunicare in output:
+    Il numero dei positivi e negativi
+    Il massimo e il minimo dei numeri positivi
+    Il massimo e il minimo dei numeri negativi
+    La percentuale dei positivi e negativi rispetto al totale dei numeri.
+    La media dei positivi e negativi
+
+    -->
+    <div id="risultato">
+
+    </div>
+</body>
+</html>
+<script>
+let index,n,num;
+let numP=0,maxP=0,minP=0,sommaP=0,mediaP=0;
+let numN=0,maxN=0,minN=0,sommaN=0,mediaN=0;
+let percN,percP;
+let sequenzaNumeri = " ";
+    n=parseInt(prompt("Quanti numeri ?"));
+    for (let index = 0; index < n; index++) {
+        num=parseInt(prompt(index+1+") Numero "));
+        sequenzaNumeri+= num + " : ";
+        if (num>0){
+            numP++;
+            sommaP+=num;
+            if ((minP==0) && (maxP==0)){
+                maxP=num;
+                minP=num;
+            }
+            if (num>maxP)
+                maxP=num;
+            if (num<minP)
+                    minP=num;
+        }
+        if (num<0){
+            numN++;
+            sommaN+=num;
+            if ((maxN==0) && (minN==0)){
+                maxN=num;
+                minN=num;
+            }
+            if (num>maxN)
+                maxN=num;
+            if (num<minN)
+                    minN=num;
+        }
+    }
+    percP=(numP/n)*100;
+    percN=(numN/n)*100;
+    mediaP=sommaP/numP;
+    mediaN=sommaN/numN;
+    document.write("Sul totale di " + n + " numeri inseriti : " + sequenzaNumeri );
+    document.write("<br>Numeri positivi " + numP);
+    document.write("<br>Max tra i positivi " + maxP);
+    document.write("<br>Min tra i positivi " + minP);
+    document.write("<br>Numeri negativi " + numN);
+    document.write("<br>Max tra i negativi " + maxN);
+    document.write("<br>Min tra i negativi " + minN);
+    document.write("<br>Somma dei negativi " + sommaN);
+    document.write("<br>Somma dei positivi " + sommaP);
+    document.write("<br>Percentuale dei positivi " + percP.toFixed(2)+"%");
+    document.write("<br>Percentuale dei negativi " + percN.toFixed(2)+"%");
+    document.write("<br>Media dei positivi " + mediaP.toFixed(2));
+    document.write("<br>Media dei negativi " + mediaN.toFixed(2));
+
+
+</script>

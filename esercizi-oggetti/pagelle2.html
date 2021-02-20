@@ -1,0 +1,178 @@
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+     <title>Pagelle 1</title>
+ </head>
+ <body>
+     
+ </body>
+ </html>
+ <script>
+/*1. Pagelle scolastiche
+
+Creiamo una struttura dati in grado di contenere la pagella di uno studente
+La pagella sarà composta da un array di oggetti (materia,voto,assenza)
+
+ 
+Crea una funzione per ognuna delle seguenti richieste
+    1. Popola la pagella con dati a piacere.
+    2. Stampa la pagella inserita
+    3. Stampa la somma delle ore di assenza in tutte le materie
+    4. Stampa il numero delle materie insufficienti
+    5. Stampa la media dei voti in tutte le materie
+    6. Stampa il voto massimo e minimo e le rispettive materie. 
+*/
+// l'array di materie che forma la pagella
+function Pagella () {
+    this.pagella = new Array();
+    this.push = function (materia){ //inserisce un oggetto (nome,voto,assenza)
+        this.pagella.push(materia);
+        return true;
+
+    }; 
+    this.pop = function (materia){ //estrae l'oggetto della materia
+        let ultima=this.pagella.pop()
+        return ultima;
+
+    }; 
+    this.cercaMateria = function (materia){ //verifica se una materia è presente
+        for (let i=0;i<this.pagella.length;i++){
+            if (this.pagella[i].nome==materia){
+                return this.pagella[i];
+            }
+        }
+        return false;
+    }; 
+    this.sommaAssenze = function (){
+        let somma=0;
+        for (let i=0;i<this.pagella.length;i++){
+            somma+=this.pagella[i].ore;
+        }
+        return somma;
+    }; //somma le assenze in tutte le materie
+    this.sommaDebiti = function (){ //somma le materie insufficienti
+        let somma=0;
+        for (let i=0;i<this.pagella.length;i++){
+            if (this.pagella[i].voto < 6)
+                somma++;
+        }
+        return somma;
+    }; 
+   
+    this.mediaDebiti = function (){  //media voti delle materie insufficienti
+        let somma=0,cont=0;
+        for (let i=0;i<this.pagella.length;i++){
+            if (this.pagella[i].voto < 6){
+                somma+=this.pagella[i].voto
+                cont++;
+            }
+        }
+        return somma/cont;
+    }; 
+
+    this.calcolaMaxMin = function (){ 
+    let max,min,matmax,matmin;
+    for (let i=0;i<this.pagella.length;i++) {
+            if (i==0){
+                max=this.pagella[i].voto;
+                min=this.pagella[i].voto;
+                matmin=this.pagella[i].nome;
+                matmax=this.pagella[i].nome;
+            }
+            else if (this.pagella[i].voto<min) {
+                min=this.pagella[i].voto;
+                matmin=this.pagella[i].nome;
+            }
+            else if (this.pagella[i].voto>max){
+                max=this.pagella[i].voto;
+                matmax=this.pagella[i].nome;
+
+            }
+    }  
+    return {
+        matmax:matmax,
+        vmax:max,
+        matmin:matmin,
+        vmin:min,
+    }
+}
+
+
+    this.tutto = function (){ //restituisce il tabellone, cioè l'array di pagelle
+        return this.pagella;
+    }; 
+}
+
+//costruttore di materia
+ function Materia(nome,voto,ore){  
+    this.nome = nome;
+    this.voto = voto;
+    this.ore = ore;
+    this.tutto = function (){
+        return(this.nome+";"+this.voto+" "+this.ore);
+    }
+    console.log(this);
+  }
+
+//Inserisce le materie nell'oggetto pagella
+function popola() {
+let n,v,o,mat;
+num = parseInt(prompt("Quante materie vuoi inserire?"));
+for (let i=0;i<num;i++){
+    console.log(i);
+    n = prompt((i+1)+ ") Nome materia ?");
+    v = Number(prompt("Voto ?"));
+    o = parseInt(prompt("Ore assenza?"));
+    mat = new Materia(n,v,o);
+    pag1.push(mat);
+    }  
+}
+ 
+//Menu per la scelta della funzione da eseguire
+
+let pag1 = new Pagella();
+let pag2 = new Pagella();
+
+var scelta=1;
+while (scelta){
+    scelta=parseInt(prompt("1)Popola; 2)Stampa 3)Somma assenze 4)Conta insuff 5) Media debiti. 6) Min Max Scegli ?:"));
+    switch(scelta) {
+    case 1:
+        popola();
+        break;
+    case 2:
+        console.log("Voti inseriti:");
+        console.table(pag1.tutto());  
+        break;
+    case 3:
+        console.log("Somma assenze:");
+        console.log(pag1.sommaAssenze());
+        break;
+    case 4:
+        console.log("Somma insufficienze:");
+        console.log(pag1.sommaDebiti());
+        break;
+    case 5:
+         console.log("Media insufficienze:");
+         console.log(pag1.mediaDebiti());
+         break;
+    case 6:
+         console.log("Max Min :");
+         console.log(pag1.calcolaMaxMin()); 
+         break;
+    default:
+        console.log("Tutto "+pag1.tutto());
+}
+
+ 
+
+
+
+ 
+
+}
+
+</script>

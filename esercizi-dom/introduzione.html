@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body onload="caricata()">
+    <div id="demo">
+            <ol id="lista1">
+                <li>Primo Elemento</li>
+                <li>Secondo Elemento</li>
+            </ol>
+            <ol id="lista2">
+                <li>Primo Elemento</li>
+                <li>Secondo Elemento</li>
+            </ol>
+    </div>
+</body>
+</html>
+<script>
+    function caricata() {
+        alert("Apri la console");   
+    }
+    console.log(window);
+    console.log(window.document);
+    console.log(window.document.body);
+    console.log(window.document.body.querySelector('div'))
+    console.log(window.document.body.querySelector('ol'))
+    console.log(window.document.body.querySelector('ol#lista2'))
+    console.log(window.document.body.querySelector('ol#lista2').children[0])
+    console.log(window.document.getElementById('lista2').children[1])
+    
+
+ 
+</script>
+
+

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Persone</title>
+</head>
+<body>
+    
+</body>
+<script>
+var persona = {
+	nome: "Mario",
+    cognome: "Rossi",
+    mostraNomeCompleto : function() {
+	return (this.nome + " " + this.cognome);
+   }
+};
+
+
+persona["data"] = new Date(1991, 6, 14);
+console.log(persona.data);
+console.log(persona.nome);
+console.log(persona["cognome"]);
+/*persona.mostraNomeCompleto = function() {
+	return (this.nome + " " + this.cognome);
+};*/
+console.log("Nome e cognome = "+persona.mostraNomeCompleto());
+
+var persone= new Array();
+persone.push(persona);
+console.log(persone.length);
+console.log("Nome e cognome = "+persone[0].mostraNomeCompleto());
+
+
+
+var pagella = new Array()
+
+ function Materia(nome,voto,ore){  
+    this.nome = nome;
+    this.voto = voto;
+    this.ore = ore;
+    this.tutto = function (){
+        return(this.nome+";"+this.voto+";"+this.ore);
+    }
+    console.log(this);
+  }
+
+let n=prompt("Nome materia ?");
+let v=Number(prompt("Voto ?"));
+let o=parseInt(prompt("Ore assenza?"));
+let mat = new Materia(n,v,o);
+pagella.push(mat);
+console.log("Tutto = "+pagella[0].tutto());
+
+
+
+</script>
+</html>

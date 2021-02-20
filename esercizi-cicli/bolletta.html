@@ -1,0 +1,60 @@
+<!-- BOLLETTA
+    Si vuole costruire un programma che calcoli e stampi uno schema di bolletta della luce.
+
+Si considerano come costanti :
+    La percentuale dell`IVA (22%)
+    Il costo unitario del consumo per un 1Kwh (0,03 €/kWh)
+    Il canone fisso dell`impianto (20€)
+
+Dati in input:
+    Un codice cliente che identifica l’utente
+    Il numero di Kwh consumati
+
+Calcolare l`importo da pagare, aggiungendo il canone fisso è l`IVA.
+Scrivere la bolletta con i dati di input e quelli calcolati.
+Il procedimento deve essere eseguito per n abbonati, con n inserito in input all’inizio.
+IL risultato deve essere fornito in forma tabellare
+
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bolletta</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+</head>
+<body>
+    
+</body>
+</html>
+
+<script>
+    const canone=20;
+    const costoKWH=0.03;
+    const iva=22;
+    let n,i;
+    let codiceCliente,consumoKWH,importoTotale,importoIva;
+    do
+        n=parseInt(prompt("Inserisci il numero di utenti"));
+    while (isNaN(n));
+    document.write("<div>");
+    document.write("<br><b>BOLLETTE DA EMETTERE</b>");
+    document.write("<table>");
+    document.write('<br><br><table class="table" border=1><tr><th>Codice</th><th>Consumo*Costo KWH</th><th>Canone</th><th>Iva</th><th>Totale</th></tr>');
+
+    for (i=0;i<n;i++){
+        do
+         codiceCliente=parseInt(prompt((i+1)+") Inserisci il codiceCliente (int)"));
+        while (isNaN(codiceCliente));
+        do
+         consumoKWH=parseFloat(prompt((i+1)+") Inserisci il consumo in kwh (float)"));
+        while (isNaN(consumoKWH));
+        importoIva =  (consumoKWH * costoKWH)*(iva/100);
+        importoTotale = canone + importoIva + consumoKWH * costoKWH;
+        document.write('<tr><td>'+codiceCliente+'</td><td>'+ consumoKWH+' * '+costoKWH+' = '+(consumoKWH*costoKWH).toFixed(2)+' &euro;</td><td>'+canone+' &euro;</td><td>'+(consumoKWH*costoKWH).toFixed(2)+' * '+iva+'% = '+importoIva.toFixed(2)+' &euro;</td><td>'+importoTotale.toFixed(2)+' &euro;</td></tr>');
+    }
+    document.write('</table>');
+    document.write("<div>");
+</script>

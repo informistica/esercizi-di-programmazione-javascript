@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>DOM : Document Object Model</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
+        
+        <style>
+           
+        </style>
+        
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                var h1 = document.querySelector('#title');
+                h1.style.textTransform = 'uppercase';
+                h1.style.color = 'green';
+                h1.innerHTML = 'HELLO WORLD';
+                h1.onclick = function () {
+                    alert('you clicked me')
+                };
+                
+                
+                var p = document.querySelectorAll('p, h1, button');
+                for(var i = 0; p[i]; i++){
+                p[i].style.fontSize= '40px';
+                 p[i].style.color= 'red';
+                  }
+               
+              
+         var row = document.getElementsByClassName('row');
+       
+            if(row){
+                var ele = row[0];
+                ele.style.border ='2px solid red'
+            }
+        
+            });
+       
+      
+
+
+        </script>
+
+    </head>
+    <body>
+        <h1 id="title">document.getElementById</h1>
+
+        <div class="row">
+            <p> LOREM IPSUM</p>
+            <div class="col-md-6 push-md-3">
+                <p class="lead">A paragraph inside a div</p>
+                <button id="save" class="btn btn-success">SAVE</button>
+            </div>
+
+        </div>
+    </body>
+
+</html>

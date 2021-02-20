@@ -1,0 +1,189 @@
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+     <title>Pagelle 1</title>
+ </head>
+ <body>
+     <div id="tabella">
+
+     </div>
+ </body>
+ </html>
+ <script>
+/*2. Pagelle scolastiche #2
+
+Creiamo una struttura dati in grado di contenere la pagella di più studenti
+La pagella sarà composta da un array di oggetti studente
+Ogni studente contiene un array di oggetti materia (nome,voto,assenze)
+
+*/
+
+
+
+ function Materia(nome,voto,ore){  
+    this.nome = nome;
+    this.voto = voto;
+    this.ore = ore;
+    this.tutto = function (){
+        return(this.nome+";"+this.voto+" "+this.ore);
+    }
+    console.log(this);
+  }
+
+  function Studente(cognome,nome){  
+    this.cognome = cognome;
+    this.nome = nome;
+    this.materie = new Array();
+    this.push = function (materia){
+        this.materie.push(materia);
+        return(this.nome+";"+this.voto+" "+this.ore);
+    }
+    this.pop = function (materia){
+        for (let i=0;i<this.materie.length;i++){
+            if (this.materie[i].nome==materia){
+                return (this.materie[i]);
+            }
+        }
+        return(this.nome+";"+this.voto+" "+this.ore);
+    }
+    console.log(this);
+  }
+
+  function Tabellone(){  
+    this.studenti = new Array();
+    
+    this.push = function (studente){
+        this.studenti.push(studente);
+        return(true);
+    }
+    
+    this.pop = function (cognome,nome){
+         for (let i=0;i<this.studenti.length;i++){
+            if ((this.studenti[i].cognome==cognome) &&(this.studenti[i].nome==nome)){
+                return (this.studenti[i]);
+            }
+        }
+       
+        return(false);
+    }
+
+    this.tutto = function (){
+        return(this.studenti);
+    }
+
+    this.studMat = function (cognome,nome,materia){
+        for (let i=0;i<this.studenti.length;i++){
+            if ((this.studenti[i].cognome==cognome) && (this.studenti[i].nome==nome)){
+                let stud=this.studenti[i];
+                for (let j=0;j<stud.materie.length;j++){
+                    if (stud.materie[j].nome==materia)
+                        return (stud.materie[j].voto);
+                }
+            }
+        }
+        return(false);
+    }
+
+    this.studMedia = function (cognome,nome){
+        let somma=0;
+        for (let i=0;i<this.studenti.length;i++){
+            if ((this.studenti[i].cognome==cognome) && (this.studenti[i].nome==nome)){
+                let stud=this.studenti[i];
+                for (let j=0;j<stud.materie.length;j++){
+                    somma+=stud.materie[j].voto;      
+                }
+            return (somma/stud.materie.length);
+            }
+        }
+        return(false);
+    }
+    this.classeMedia = function (){
+        let somma=0,cont=0, stud;
+        for (let i=0;i<this.studenti.length;i++){
+                stud=this.studenti[i];
+                console.log("stud:");
+                console.log(stud);
+                for (let j=0;j<stud.materie.length;j++){
+                    somma+=stud.materie[j].voto;
+                    cont++;    
+                }
+        }
+        return (somma/cont);
+    }  
+    this.maxAssenze = function (cognome,nome){
+        let max=0;matmax='';
+        for (let i=0;i<this.studenti.length;i++){
+            if ((this.studenti[i].cognome==cognome) && (this.studenti[i].nome==nome)){
+                let stud=this.studenti[i];
+                for (let j=0;j<stud.materie.length;j++){
+                    if (stud.materie[j].ore>max){
+                        max=stud.materie[j].ore;
+                        matmax=stud.materie[j].nome;
+                    }         
+                }
+            return (matmax+";"+max);
+            }
+        }
+        return(false);
+    }
+    
+    //console.log(this);
+  }
+
+let stud1=new Studente("Gullo","Giuseppe");
+let mat1=new Materia("Matematica",7,0);
+stud1.push(mat1);
+let mat2=new Materia("Italiano",6,2);
+stud1.push(mat2);
+
+let stud2=new Studente("Spina","Nicola");
+let mat3=new Materia("Matematica",7,4);
+stud2.push(mat1);
+let mat4=new Materia("Italiano",9,5);
+stud2.push(mat4);
+
+
+let tabella=new Tabellone();
+tabella.push(stud1);
+tabella.push(stud2);
+
+/*
+console.log("tabella.pop(Spina Nicola):");
+console.log(tabella.pop("Spina","Nicola"));
+
+//stampa il voto di Nicola Spina in Matematica
+console.log("voto di Nicola Spina in Matematica:"+tabella.studMat("Spina","Nicola","Matematica"));
+//Stampa la media di tutte le materie di Nicola Spina.
+console.log("media di tutte le materie di Nicola Spina:"+tabella.studMedia("Spina","Nicola"));
+//Stampa la media di tutti i voti senza distinguere gli studenti.
+console.log("media di tutti i voti senza distinguere gli studenti:"+tabella.classeMedia());
+//Stampa la materia in cui ha fatto più assenze lo studente Nicola Spina
+console.log("materia in cui ha fatto più assenze Nicola Spina: "+tabella.maxAssenze("Spina","Nicola"));
+ 
+*/
+console.log("TUTTO:");
+console.log(tabella.tutto());
+let tab=tabella.tutto();
+console.log('tab.length');
+console.log(tab.length);
+let tabString='<table border=1><tr><th>Cognome</th><th>Nome</th><th>Materia1</th><th>Ore1</th><th>Materia2</th><th>Ore2</th></tr>';
+let stud;
+    for (let i=0;i<tab.length;i++){
+        stud=tab[i];
+        tabString+='<tr><td>'+stud.cognome+'</td><td>'+stud.nome+'</td>';
+        /* console.log("stud:");
+        console.log(stud);*/
+        for (let j=0;j<stud.materie.length;j++){
+            tabString+='<td>'+stud.materie[j].nome+'</td><td>'+stud.materie[j].voto+'</td>'; 
+           }
+           tabString+='</tr>'
+    }
+tabString+='</table>';
+document.getElementById("tabella").innerHTML=tabString;
+
+
+ 
+</script>

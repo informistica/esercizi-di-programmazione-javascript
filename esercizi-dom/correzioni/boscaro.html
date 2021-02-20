@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width , initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    
+</body>
+<script>
+
+    var menu=[
+    
+    {
+        url:'http://www.google.it',
+        title:'title.it'
+    },
+    {
+        url: 'http://www.google.it',
+        title:'google.it'
+    },
+    
+    ]
+    document.addEventListener('DOMContentLoaded',function(){
+        let doc,ul,li,a,i,text;
+        doc=document;
+            ul=doc.createElement('ul');
+            menu.forEach(function(ele){
+                li=doc.createElement('li');
+                a=doc.createElement('a');
+                a.href=ele.url;
+                a.setAttribute('title',ele.title);
+                text=doc.createTextNode(ele.title);
+                a.appendChild(text);
+                li.appendChild(a);
+                ul.appendChild(li);
+            });
+            doc.body.appendChild(ul);
+    
+    
+    });
+    
+            
+        </script>
+</html>

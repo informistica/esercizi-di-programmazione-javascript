@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .tRed,
+        table.tRed {
+            border: 1px solid red;
+        }
+        
+        .tRed tr:nth-child(odd) td {
+            color: yellow
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        var tables = document.getElementsByTagName('table');
+        document.getElementsByTagName("table").className = "tRed";
+        for (let i = 0; i < tables.length; i++) {
+            tables[i].className = 'tRed';
+        }
+
+            //document.body.style.backgroundColor = '#ffaaff';
+        })
+    </script>
+
+</head>
+
+<body>
+    <script>
+       
+    </script>
+    <p>ciao</p>
+    <table border="1">
+        <tr>
+            <th>
+                ciao
+            </th>
+            <th>come stai</th>
+        </tr>
+        <tr>
+            <td>bho</td>
+            <td>non so</td>
+        </tr>
+        <tr>
+            <td>
+                ciao
+            </td>
+            <td>come stai</td>
+
+        </tr>
+        <tr>
+            <td>bho</td>
+            <td>non so</td>
+        </tr>
+        <tr>
+            <td>bho</td>
+            <td>non so</td>
+        </tr>
+    </table>
+</body>
+
+</html>

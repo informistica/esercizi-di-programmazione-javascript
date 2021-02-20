@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Senza ripetizioni</title>
+</head>
+<body>
+    <input type="number" min="2" max="100" id="inputNum" placeholder="Quanti elementi nel vettore?"><br>
+    <input type="text" placeholder="Inserisci numero massimo" id="maxNum"><br>
+    <button onclick="generaArray();">Genera</button>
+</body>
+<script>
+    let vetNum=[];
+    function generaArray() {
+       
+        let maxNum=document.getElementById("maxNum").value;
+        let numElem=document.getElementById("inputNum").value;
+        let numOccorrenze=0;
+        let itera;
+        let numRand;
+        for (let index = 0; index < numElem; index++) { 
+            itera=0;
+            do {
+               numRand = Math.floor(Math.random()*maxNum +1);
+            } while (cercaNumero(numRand)!=0);
+            vetNum[index]=numRand;
+            console.log(vetNum[index]);
+        }
+    }
+    function cercaNumero(num) {
+        let n=0;
+        for (let index = 0; index < vetNum.length; index++) {
+             if (vetNum[index]==num)
+                n++;
+        }
+        return n;       
+    }
+</script>
+</html>

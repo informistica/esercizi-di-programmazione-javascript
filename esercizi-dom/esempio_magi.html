@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="parent-id">
+        <p id="p1">hello word1</p>
+        <input type="button" id="b1" value="Vedi risorse World1" onclick="load(1)"><br>
+        <p id="p2">hello word2</p>
+        <input type="button" id="b1" value="Vedi risorse World2" onclick="load(2)"><br>
+         
+    </div>
+    <script>
+       function load(id){
+        //qui fai la chiamata ajax concatenando l'id con p per ottenere l'id del bottone
+       alert(id);
+       document.getElementById("p"+id).innerHTML="Hai cliccato il mio bottone!"
+       }
+        
+    </script>
+</body>
+</html>

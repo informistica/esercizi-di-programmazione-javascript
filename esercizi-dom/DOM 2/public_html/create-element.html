@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Parent Child</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script>
+            var menu =[
+                {
+                    url :'http://www.google.it',
+                    title :'google.it'
+                },
+                {
+                    url :'http://www.italia.it',
+                    title :'italia.it'
+                },
+                {
+                    url :'http://www.microsoft.it',
+                    title :'microsoft.it'
+                }
+            ];
+
+ document.addEventListener('DOMContentLoaded', function () {
+   var  doc, ul, li, a,i, text;
+        doc = document;
+        ul = doc.createElement('ul');
+        menu.forEach(function(ele){
+              li = doc.createElement('li');
+            /*
+              a = doc.createElement('a');
+              a.href = ele.url;
+              a.setAttribute('title',ele.title);
+              text = doc.createTextNode(ele.title);
+              a.appendChild(text);
+              */
+              li.innerHTML ='<a href="'+ele.url+'">'+ele.title+'</a>';
+              ul.appendChild(li);
+         });
+         doc.querySelector('#container').appendChild(ul)
+
+ });
+ 
+        </script>
+    </head>
+    <body>
+        <div  id="container"></div>
+    </body>
+</html>

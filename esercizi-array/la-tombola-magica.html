@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tombola magica</title>
+</head>
+<body>
+    
+    <button onclick="generaArray();">Genera array</button><br>
+    
+</body>
+<script>
+// creo array vuoti 
+let vetNum1=[]; //numeri estratti
+let vetNum2=[]; // cartella giocatore
+  
+
+function generaArray() {
+    let numRand;
+    console.log("V1  V2");
+    for (let index = 0; index < 10; index++) {  
+        do {
+              numRand = Math.floor(Math.random()*90 +1);
+            } while (cercaNumero(vetNum1,numRand)!=0);
+        vetNum1[index]= numRand;
+        do {
+            numero = Number(prompt("Inserisci "+ (index+1) + " numero:"));
+        } while (isNaN(numero) || (numero<=0) || (numero>90) || (cercaNumero(vetNum2,numero)!=0));  
+        vetNum2[index]= numero;  
+        console.log(vetNum1[index] + "  " + vetNum2[index]);
+    }
+    controlla();
+}
+
+function controlla() {
+    // In base al numero di elementi uguali nei due vettori stampa l'esito 
+    // Utilizza la funzione cercaNumero che riceve il vettore dei numeri e il numero da controllare.
+    // e restituisce 0 (se il numero non compare) oppure 1 (se compare nel vettore).
+    // non essendo previste ripetizioni nel vettore, cercaNumero restituisce 0 o 1. 
+    let numUguali=0;
+    for (let index = 0; index < vetNum2.length; index++) {
+        if (cercaNumero(vetNum1,vetNum2[index])!=0){
+            numUguali++;
+        }
+    }  
+        switch (numUguali) {
+            case 2:
+                console.log("ambo");
+                break;
+            case 3:
+                 console.log("somma");
+                break;
+            case 4:
+                console.log("Quaterna");   
+                break;
+            case 5:
+                console.log("Cinquina");
+                break;
+            case 10:
+                console.log("Tombola");
+                break;    
+            default:
+                console.log(numUguali+ " Corrispondenze");;
+        }
+     
+}
+
+
+
+function cercaNumero(vetNum,num) {
+        let n=0;
+        for (let index = 0; index < vetNum.length; index++) {
+             if (vetNum[index]==num)
+                n++;
+        }
+        return n;       
+    }
+</script>
+</html>

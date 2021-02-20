@@ -1,0 +1,68 @@
+ 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Somma righe e colonne</title>
+</head>
+<body>
+    <script>
+        let n=Number(prompt("Inserisci dimensione N (num righe):"));  
+        let m=Number(prompt("Inserisci dimensione M (num colonne):"));
+        //let n=2,m=3;
+        let matrice = new Array(n);
+        for (let i = 0; i < matrice.length; i++) {
+            matrice[i] = new Array(m);
+        }
+        let arrayr= new Array (n); //per la somma delle righe
+        let arrayc= new Array (m); //per la somma delle colonne
+
+        let x,y,sommar,sommac=0; 
+      
+        document.write("<table border=1>");
+        //creo matrice
+        for (x=0; x<n; x++)
+        {   document.write("<tr>");
+            for (y=0; y<m; y++)
+            {
+                matrice[x][y] = Math.trunc(Math.random()*100 + 1);
+                document.write("<td>");
+                document.write(matrice[x][y]);
+                document.write("</td>");
+            }
+            document.write("</tr>");
+        }
+        document.write("</table>");
+
+        //faccio le somme delle righe
+        for (x=0; x<n; x++)
+        {   sommar=0;
+            for (y=0; y<m; y++)
+                sommar+=matrice[x][y];     
+            arrayr[x]=sommar;
+        }
+
+        //faccio le somme delle colonne
+        for (y=0; y<m; y++)
+        {   sommac=0;
+            for (x=0; x<n; x++)
+                sommac+=matrice[x][y];     
+            arrayc[y]=sommac;
+        }
+        console.log("Somma righe:");
+        console.log(arrayr);
+        console.log("Somma colonne:");
+        console.log(arrayc);
+
+
+
+
+       
+
+
+
+    </script>
+</body>
+</html>

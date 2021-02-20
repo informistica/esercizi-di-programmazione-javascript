@@ -1,0 +1,268 @@
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+     <title>Pagelle 1</title>
+ </head>
+ <body>
+    <div class="container">
+        <!-- Content here -->
+        <form>
+            <div class="form-group">
+            <label>Studente</label>
+            <input type="text" class="form-control" id="cognome"  placeholder="Cognome">
+            </div>
+            <div class="form-group">
+            <input type="text" class="form-control" id="nome"  placeholder="Nome">
+            </div>
+            <label>Materia</label>
+            <div class="form-group"> 
+            <input type="text" class="form-control" id="materia"  placeholder="Materia">
+            </div>
+            <div class="form-group">
+            <input type="text" class="form-control" id="voto"  placeholder="Voto">
+            </div>
+            <div class="form-group">
+            <input type="text" class="form-control" id="ore"  placeholder="Ore di assenza">
+         </div>
+            <div class="form-check">
+            </div>
+            <button type="button" onclick="aggiungiMateria()" class="btn btn-primary">Inserisci</button>
+        </form>
+        <div id="tabella">
+        </div>
+    </div>
+ </body>
+ </html>
+ <script>
+/*1. Pagelle scolastiche
+
+Creiamo una struttura dati in grado di contenere la pagella di uno studente
+La pagella sarà composta da un array di oggetti (materia,voto,assenza)
+
+ 
+Crea una funzione per ognuna delle seguenti richieste
+    1. Popola la pagella con dati a piacere.
+    2. Stampa la pagella inserita
+    3. Stampa la somma delle ore di assenza in tutte le materie
+    4. Stampa il numero delle materie insufficienti
+    5. Stampa la media dei voti in tutte le materie
+    6. Stampa il voto massimo e minimo e le rispettive materie. 
+*/
+
+ 
+
+function inviaForm() {
+    let cognome,nome,materia,voto,ore;
+    cognome=document.getElementById("cognome").value;
+    nome=document.getElementById("nome").value;
+    materia=document.getElementById("materia").value;
+    voto=document.getElementById("voto").value;
+    ore=document.getElementById("ore").value;
+    if ((cognome='') || (nome='') || (materia='')  || (voto='') || (ore=''))
+        alert("Devi compilare tutti i campi")
+    else
+   {
+      let stud;
+      if (tabella.cercaStud(cognome,nome)){ //se è presente aggiungo la materia allo studente
+        stud=tabella.cercaStud(cognome,nome);
+        let mat=new Materia(materia,voto,ore);
+        stud.push(mat);
+        alert("Materia aggiunta allo studente");
+      } else {//se non è presente aggiungo lo studente
+         stud=new Studente(cognome,nome); 
+         alert("Studente e materia aggiunti");
+      }
+
+    }
+    
+}
+    
+
+ 
+
+ function Materia(nome,voto,ore){  
+    this.nome = nome;
+    this.voto = voto;
+    this.ore = ore;
+    this.tutto = function (){
+        return(this.nome+";"+this.voto+" "+this.ore);
+    }
+    console.log(this);
+  }
+
+  function Studente(cognome,nome){  
+    this.cognome = cognome;
+    this.nome = nome;
+    this.materie = new Array();
+    this.push = function (materia){
+        this.materie.push(materia);
+        return(this.nome+";"+this.voto+" "+this.ore);
+    }
+    this.pop = function (materia){
+        for (let i=0;i<this.materie.length;i++){
+            if (this.materie[i].nome==materia){
+                return (this.materie[i]);
+            }
+        }
+        return(this.nome+";"+this.voto+" "+this.ore);
+    }
+    console.log(this);
+  }
+
+  function Tabellone(){  
+    this.studenti = new Array();
+    
+    this.push = function (studente){
+        this.studenti.push(studente);
+        return(true);
+    }
+    
+    this.pop = function (cognome,nome){
+         for (let i=0;i<this.studenti.length;i++){
+            if ((this.studenti[i].cognome==cognome) &&(this.studenti[i].nome==nome)){
+                return (this.studenti[i]);
+            }
+        }
+       
+        return(false);
+    }
+
+    this.tutto = function (){
+        return(this.studenti);
+    }
+
+    this.studMat = function (cognome,nome,materia){
+        for (let i=0;i<this.studenti.length;i++){
+            if ((this.studenti[i].cognome==cognome) && (this.studenti[i].nome==nome)){
+                let stud=this.studenti[i];
+                for (let j=0;j<stud.materie.length;j++){
+                    if (stud.materie[j].nome==materia)
+                        return (stud.materie[j].voto);
+                }
+            }
+        }
+        return(false);
+    }
+
+    this.studMedia = function (cognome,nome){
+        let somma=0;
+        for (let i=0;i<this.studenti.length;i++){
+            if ((this.studenti[i].cognome==cognome) && (this.studenti[i].nome==nome)){
+                let stud=this.studenti[i];
+                for (let j=0;j<stud.materie.length;j++){
+                    somma+=stud.materie[j].voto;      
+                }
+            return (somma/stud.materie.length);
+            }
+        }
+        return(false);
+    }
+    this.classeMedia = function (){
+        let somma=0,cont=0, stud;
+        for (let i=0;i<this.studenti.length;i++){
+                stud=this.studenti[i];
+                console.log("stud:");
+                console.log(stud);
+                for (let j=0;j<stud.materie.length;j++){
+                    somma+=stud.materie[j].voto;
+                    cont++;    
+                }
+        }
+        return (somma/cont);
+    }  
+    this.maxAssenze = function (cognome,nome){
+        let max=0;matmax='';
+        for (let i=0;i<this.studenti.length;i++){
+            if ((this.studenti[i].cognome==cognome) && (this.studenti[i].nome==nome)){
+                let stud=this.studenti[i];
+                for (let j=0;j<stud.materie.length;j++){
+                    if (stud.materie[j].ore>max){
+                        max=stud.materie[j].ore;
+                        matmax=stud.materie[j].nome;
+                    }         
+                }
+            return (matmax+";"+max);
+            }
+        }
+        return(false);
+    }
+    this.cercaStud = function (cognome,nome){
+        for (let i=0;i<this.studenti.length;i++){
+            if ((this.studenti[i].cognome==cognome) && (this.studenti[i].nome==nome)){
+               return (studenti[i]);
+            }
+        }
+        return (false);
+    }  
+    
+    //console.log(this);
+  }
+
+  
+
+let stud1=new Studente("Gullo","Giuseppe");
+let mat1=new Materia("Matematica",7,0);
+stud1.push(mat1);
+let mat2=new Materia("Italiano",6,2);
+stud1.push(mat2);
+
+let stud2=new Studente("Spina","Nicola");
+let mat3=new Materia("Matematica",7,4);
+stud2.push(mat1);
+let mat4=new Materia("Italiano",9,5);
+stud2.push(mat4);
+
+
+let tabella=new Tabellone();
+tabella.push(stud1);
+tabella.push(stud2);
+
+/*
+console.log("tabella.pop(Spina Nicola):");
+console.log(tabella.pop("Spina","Nicola"));
+
+//stampa il voto di Nicola Spina in Matematica
+console.log("voto di Nicola Spina in Matematica:"+tabella.studMat("Spina","Nicola","Matematica"));
+//Stampa la media di tutte le materie di Nicola Spina.
+console.log("media di tutte le materie di Nicola Spina:"+tabella.studMedia("Spina","Nicola"));
+//Stampa la media di tutti i voti senza distinguere gli studenti.
+console.log("media di tutti i voti senza distinguere gli studenti:"+tabella.classeMedia());
+//Stampa la materia in cui ha fatto più assenze lo studente Nicola Spina
+console.log("materia in cui ha fatto più assenze Nicola Spina: "+tabella.maxAssenze("Spina","Nicola"));
+ 
+*/
+console.log("TUTTO:");
+console.log(tabella.tutto());
+let tab=tabella.tutto();
+console.log('tab.length');
+console.log(tab.length);
+let tabString='<br><br><table class="table" border=1><tr><th>Cognome</th><th>Nome</th><th>Materia1</th><th>Ore1</th><th>Materia2</th><th>Ore2</th></tr>';
+let stud;
+    for (let i=0;i<tab.length;i++){
+        stud=tab[i];
+        tabString+='<tr><td>'+stud.cognome+'</td><td>'+stud.nome+'</td>';
+        /* console.log("stud:");
+        console.log(stud);*/
+        for (let j=0;j<stud.materie.length;j++){
+            tabString+='<td>'+stud.materie[j].nome+'</td><td>'+stud.materie[j].voto+'</td>'; 
+           }
+           tabString+='</tr>'
+    }
+tabString+='</table>';
+document.getElementById("tabella").innerHTML=tabString;
+
+
+ 
+</script>

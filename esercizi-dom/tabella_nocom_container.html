@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabella dinamica</title>
+     <!-- Bootstrap CSS -->
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+</head>
+<body>
+<div class="container">
+    <div id="demo">
+
+    </div>
+</div>
+</body>
+</html>
+
+<script>
+let tablearea = document.getElementById('demo');
+    table = document.createElement('table');
+
+    table.addEventListener('click',  handleTable, true);    
+    
+   
+let numCol=4,numRow=6;
+let tr = document.createElement('tr');
+  for (var i = 0; i < numCol; i++) {
+   tr.appendChild(document.createElement('th') );
+   tr.cells[i].appendChild(document.createTextNode('Col'+i) )
+   // alternativa : aggiungo alla cella della tabella il suo html
+   // tr.cells[i].innerHTML='<th>Col'+i+'</th>';
+}
+  tr.appendChild(document.createElement('th') );
+  tr.cells[i].appendChild(document.createTextNode('Elimina') )
+  //alternativa : aggiungo alla cella della tabella il suo html
+  //tr.cells[i].innerHTML='<th>Elimina</th>';
+  table.appendChild(tr);
+for (var i = 0; i < numRow; i++) {
+  tr = document.createElement('tr');
+  for (var j = 0; j < numCol; j++) {
+    tr.appendChild(document.createElement('td') );
+    tr.cells[j].appendChild(document.createTextNode('Text '+i+j))
+    //alternativa : aggiungo alla cella della tabella il suo html
+    //tr.cells[j].innerHTML='Text '+i+j;
+  } 
+  let btn=document.createElement('button');
+  btn.setAttribute('id',i);
+  btn.className='btn btn-danger';
+  btn.appendChild(document.createTextNode('Elimina'))  
+  //btn.addEventListener('click',handleButton,true)  // sostituito dal gestore per tutta la tabella
+  let td=document.createElement('td');
+  td.appendChild(btn);
+  tr.appendChild(td)
+  table.appendChild(tr);
+}
+table.className="table";
+tablearea.appendChild(table);
+ 
+
+function handleTable(evt) {
+             var ele = evt.target;
+             console.log(evt)
+            switch (ele.nodeName.toLowerCase()){
+                case 'button':
+                    var tr =  ele.parentNode.parentNode;
+                    tr.parentNode.removeChild(tr) 
+                    evt.preventDefault();
+                    break;
+            }
+
+         }
+
+
+function handleButton(evt) {
+//dall'evento generato risale l'albero fino alla tabella
+//bottone->cella -> riga -> tabella
+    let conferma = confirm("Vuoi cancellare la riga "+ evt.target.id +" ?");
+        if (conferma===true) {     
+             let ele = evt.target;  
+             let td =  ele.parentNode  
+             let tr = td.parentNode  
+             let tabella=tr.parentNode  
+             tabella.removeChild(tr)  
+            }
+             console.log("Evento generato dal bottone con id=")
+             console.log(evt.target.id)  
+             console.log("Tipo di evento generato :")
+             console.log(evt)
+            //alternativa
+          /* let tabella =  ele.parentNode.parentNode.parentNode;
+             tabella.removeChild(ele.parentNode.parentNode)  */
+         }
+
+
+</script>

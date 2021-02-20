@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Azzecca e azzera</title>
+</head>
+<body>
+    <input type="number" id="inputNum" onchange="validaInput();" placeholder="Quanti elementi (min 10) ?"><br>
+    <button id="btnGenera" onclick="generaArray();" disabled>Genera</button>
+</body>
+<script>
+    let vetNum=[];
+
+    function validaInput() {
+        let numElem=Number(document.getElementById("inputNum").value);
+        if  (numElem>=10)
+            document.getElementById("btnGenera").disabled=false;
+        else
+        document.getElementById("btnGenera").disabled=true;
+        
+    }
+    function generaArray() {  
+        let numElem=Number(document.getElementById("inputNum").value);
+        for (let index = 0; index < numElem; index++) { 
+            vetNum[index]= Math.floor(Math.random()*50 +1);
+            console.log(vetNum[index]);
+        }
+        gestisciAzzeramento();
+    }
+
+    function gestisciAzzeramento() {
+        let tuttoAzzerato=false;
+        do {
+             do {
+                numero=Number(prompt("Inserisci numero da elaborare"));
+                } while (isNaN(numero) || (numero==0));
+             azzeraArray(numero);
+             tuttoAzzerato=verificaArray();
+            } while (tuttoAzzerato==false);
+            console.log("L'array è tutto a zero, fine dello script.");
+        
+    }
+
+    function azzeraArray(num) {   
+        console.log("Azzero multipli di "+num);
+        for (let index = 0; index < vetNum.length; index++) { 
+            if ((vetNum[index]!= 0)&&(vetNum[index] % num)==0){
+                console.log("Azzerato:"+ vetNum[index]);
+                vetNum[index]=0;
+            }
+       
+        console.log(vetNum);
+        
+     }
+        
+    }
+
+    function verificaArray() {
+        let tuttoZero=true;
+        for (let index = 0; index < vetNum.length; index++) {
+             if (vetNum[index]!=0){
+                tuttoZero=false;
+                break;
+             }          
+        }
+            return tuttoZero; 
+    }
+</script>
+</html>

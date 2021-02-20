@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sommali tutti</title>
+</head>
+<body>
+    <script>
+        const n=10,m=10; //10 righe e 10 colonne
+       
+        let matrice = new Array(n);
+        for (var i = 0; i < matrice.length; i++) {
+            matrice[i] = new Array(m);
+        }
+
+        let x,y; 
+        
+        document.write("<table border=1>");
+
+        for (x=0; x<n; x++)
+        {   document.write("<tr>");
+            for (y=0; y<m; y++)
+            {
+                matrice[x][y] = (x+1)*(y+1);
+                document.write("<td>");
+                document.write(matrice[x][y]);
+                document.write("</td>");
+            }
+            document.write("</tr>");
+        }
+
+        document.write("</table>");
+         
+
+
+
+    </script>
+</body>
+</html>

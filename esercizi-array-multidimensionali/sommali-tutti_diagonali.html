@@ -1,0 +1,170 @@
+<!--  Sommali tutti
+  Scrivi un programma che:
+    - Prenda in input un numero (N>3) 
+    - Generi una matrice quadrata di NxN popolata di valori casuali da 1 a 10.
+    1 Stampi la matrice dentro una tabella html (in verde i numeri pari, in rosso quelli dispari)
+    2 Stampi la matrice dentro una tabella html (in rosso i numeri pari, in verde quelli dispari, in nero quelli del bordo esterno)
+    3 Stampi la somma di tutti i valori, la somma della diagonale principale, di quella secondaria e del bordo;
+    4 Stampi la matrice dentro una tabella html (in verde la diagonale principale, in rosso quella secondaria)
+
+    Esempio:
+      Input: N = 2
+      Output:
+        matrice =
+        [
+          [1, 2 , 4],
+          [5, 4 , 6],
+          [1, 2 , 7],
+        ]
+        sommadp = 12
+        sommads = 9
+        sommabordo = [1+2+4+6+7+2+1+5] = 28
+
+
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Verifica</title>
+</head>
+<body>
+    <script>
+
+       
+        var n;
+        var x,y,sommadp=0, sommads=0,sommabordo=0; somma=0;
+        //punto 1 : leggo N >3
+        do 
+          n=Number(prompt("Inserisci dimensione N(>3) :")); 
+        while (n<=3); 
+        document.write("<br>Punto 0 : <br>");
+        document.write("- Ho letto il valore N="+n+"<br>");
+        var m=n;
+        //punto 2 : creo la matrice quadrata
+        var matrice = new Array(n);
+        for (var i = 0; i < matrice.length; i++) {
+            matrice[i] = new Array(n);
+        }
+        // creo array coordinate diagonale secondaria
+        var diagosec = new Array (n);
+        for (x=0; x<n; x++)
+           diagosec[x]=(n-1-x).toString()+ x.toString();
+
+        // popolo la matrice
+        for (x=0; x<n; x++)
+            for (y=0; y<m; y++)
+                matrice[x][y] = Math.trunc(Math.random()*10 + 1);
+                
+       
+        document.write("- Ho creato e popolato la matrice "+n+"x"+n+"<br>");
+        //3 stampo la matrice dentro una tabella 
+        document.write("- Stampo la matrice dentro una tabella <br>");
+        document.write("<table border=1>");
+        for (x=0; x<n; x++)
+        {   document.write("<tr>");
+            for (y=0; y<m; y++)
+            {   
+                document.write("<td>");
+                document.write(matrice[x][y]);
+                document.write("</td>");
+                somma+=matrice[x][y];
+            }
+            document.write("</tr>");
+        }
+        document.write("</table>");
+
+        //4 Stampo la matrice dentro una tabella html (in verde i numeri pari, in rosso quelli dispari)
+        document.write("<br>Punto 1 : Stampo la matrice (in verde i numeri pari, in rosso quelli dispari)<br>");
+        document.write("<table border=1>");
+        for (x=0; x<n; x++)
+        {   document.write("<tr>");
+            for (y=0; y<m; y++)
+            {   if (matrice[x][y]%2 == 0 )
+                document.write("<td style='color:green;'>");
+                else 
+                document.write("<td style='color:red;'>");
+                document.write(matrice[x][y]);
+                document.write("</td>");
+                somma+=matrice[x][y];
+            }
+            document.write("</tr>");
+        }
+        document.write("</table>");
+
+        //4 Stampo la matrice dentro una tabella html (in verde i numeri pari, in rosso quelli dispari, in nero quelli del bordo esterno))
+        document.write("<br>Punto 2 : Stampo la matrice (in rosso i numeri pari, in verde quelli dispari, in nero quelli del bordo esterno)<br>");
+        document.write("<table border=1>");
+        for (x=0; x<n; x++)
+        {   document.write("<tr>");
+            for (y=0; y<m; y++)
+            {   if ((matrice[x][y]%2 == 0 ) && !((x==0) || (y==0) || (x==n-1) ||(y==m-1)))
+                document.write("<td style='color:red;'>");
+                else if ((matrice[x][y]%2 == 1 ) && !((x==0) || (y==0) || (x==n-1) ||(y==m-1)))
+                document.write("<td style='color:green;'>");
+                else if ((x==0) || (y==0) || (x==n-1) ||(y==m-1))
+                    document.write("<td style='color:black;'>");
+
+                document.write(matrice[x][y]);
+                document.write("</td>");
+                somma+=matrice[x][y];
+            }
+            document.write("</tr>");
+        }
+        document.write("</table>");
+
+         //sommo la diagonale principale
+        for (x=0; x<n; x++)
+            sommadp+=matrice[x][x];
+          //sommo la diagonale secondaria
+        for (x=0; x<n; x++)
+            sommads+=matrice[n-1-x][x];
+        
+        for (x=0; x<n; x++)
+            for (y=0; y<m; y++)
+              if ((x==0) || (y==0) || (x==n-1) ||(y==m-1))
+                sommabordo+=matrice[x][y];
+             
+        document.write("<br>Punto 3 : Stampo le somme di tutti i valori, delle diagonali e del bordo <br>");
+        document.write("Somma tutti i valori="+somma+"<br>");
+        document.write("Somma diagonale principale="+sommadp+"<br>");
+        document.write("Somma diagonale secondaria="+sommads+"<br>");
+        document.write("Somma bordo="+sommabordo);
+
+         //4 Stampo la matrice dentro una tabella html (in verde i numeri pari, in rosso quelli dispari, in nero quelli del bordo esterno))
+        document.write("<br><br>Punto 4 : Stampo la matrice (in verde la diagonale principale, in rosso quella secondaria)<br>");
+        document.write("<table border=1>");
+        for (x=0; x<n; x++)
+        {   document.write("<tr>");
+            for (y=0; y<m; y++)
+            {   if (x==y)
+                    colore="green";
+                else if (inArray(x.toString()+y.toString()))
+                        colore="red";
+                else colore="black";
+                  document.write("<td style='color:"+colore+"'>");
+                   // document.write("<td>");
+                document.write(matrice[x][y]);
+                document.write("</td>");
+                somma+=matrice[x][y];
+            }
+            document.write("</tr>");
+        }
+        document.write("</table>");
+
+
+        function inArray(chiave){
+            var presente=false;
+            for (let x=0; x<n; x++)
+                if (diagosec[x]==chiave)
+                    presente=true;
+            return (presente);
+        }
+
+
+    </script>
+</body>
+</html>

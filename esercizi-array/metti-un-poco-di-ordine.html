@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ordinami</title>
+</head>
+<body>
+    <input type="number" id="input_num" placeholder="Quanti elementi?" min="2"><br>
+    <button onclick="ordina_crescente();">Crescente</button><br>
+    <button onclick="ordina_decrescente();">Decrescente</button>
+</body>
+<script>
+
+function ordina_crescente() {
+    let numElem=document.getElementById("input_num").value;
+    let vet = []; // creo array originale vuoto
+    let vetOrd = []; // creo array ordinato vuoto
+    let scambio;
+    //riempio array originale
+    for (let index = 0; index < numElem; index++) {
+        numRandom = Math.floor(Math.random()*100 +1);
+       // console.log(numRandom);
+        vet[index]= numRandom; 
+        console.log(vet[index]);
+    }
+    //creo array ordinato in modo crescente
+    for (let i = 0; i < numElem-1; i++)
+     for (let j = i+1; j < numElem; j++)
+     { console.log("i="+i +" j="+j);
+       console.log("confronto tra " + vet[i]+ "<"+ vet[j]);
+       if (vet[i]>vet[j]) {
+           console.log("scambio tra " + vet[i]+ "<"+ vet[j]);
+           scambio=vet[i];
+           vet[i]=vet[j];
+           vet[j]=scambio;
+       }
+       
+    }
+    //visualizzo array ordinato
+    console.log("Array ordinato crescente");
+    for (let index = 0; index < numElem; index++) {
+        console.log(vet[index]);
+    }
+
+    
+}
+</script>
+</html>

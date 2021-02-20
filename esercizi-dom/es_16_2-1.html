@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <title>DOM es 1</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <style>
+        .tRed, table.tRed{
+            border: 1px solid red; 
+        }
+        .tRed tr:nth-child(odd) td {
+            color:darkblue; 
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+           // document.body.style.backgroundColor = '#e6b3ff';
+            var b = document.getElementsByTagName('body');
+            b[0].style.color = 'green';
+
+            var tables = document.getElementsByTagName('table');
+            console.log(tables.length);
+            for (let i = 0; i < tables.length; i++)
+                tables[i].className = 'tRed';
+
+        });
+    </script>
+</head>
+
+<body>
+    <div>
+        <h1>ciao</h1>
+        
+            <table border="1">
+                <tr>
+                    <td>ciao</td>
+                    <td>ehi</td>
+                </tr>
+                <tr>
+                    <td>non</td>
+                    <td>mi</td>
+                </tr>
+                <tr>
+                    <td>piace</td>
+                    <td>fare</td>
+                </tr>
+                <tr>
+                    <td>le</td>
+                    <td>tabelle</td>
+                </tr>
+                <tr>
+                    <td>con</td>
+                    <td>html</td>
+                </tr>
+
+
+            </table>
+  
+    </div>
+</body>
+
+</html>

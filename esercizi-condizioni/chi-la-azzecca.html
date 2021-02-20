@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <title>Chi l'azzecca</title>
+
+</head>
+
+<body>
+    <h1>Chi l'azzecca</h1>
+
+    <script>
+        let num = Math.floor((Math.random() * 100) + 1);
+        let num1 = Number(prompt("Giocatore 1 inserisci il tuo numero"));
+        let num2 = Number(prompt("Giocatore 2 inserisci il tuo numero"));
+        let differenza1, differenza2;
+
+        if (num1 == num)
+            alert("Il giocatore 1 ha indovinato");
+        else {
+            if (num2 == num)
+                alert("Il giocatore 2 ha indovinato");
+            else {
+                differenza1 = num - num1;
+                differenza2 = num - num2;
+                if (differenza1 < 0)
+                    differenza1 = differenza1 * (-1);
+                if (differenza2 < 0)
+                    differenza2 = differenza2 * (-1);
+                if (differenza1 == differenza2)
+                    alert("nessuno ha indovinato il numero e avete scritto lo stesso numero quindi è un pareggio");
+                else {
+                    if (differenza1 < differenza2)
+                        alert("nessuno ha indovinato il numero ma il giocatore 1 ci è andato più vicino");
+                    else
+                        alert("nessuno ha indovinato il numero ma il giocatore 2 ci è andato più vicino");
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <title>Tempo</title>
+    </head>
+
+    <body>
+        <h1>Tempo</h1>
+        <script>
+            
+    
+    Temposec = Number(prompt("inserisci un tempo in secondi: "));
+    var sec=0,min=0,ore=0;
+
+        if(Temposec < 0)
+        alert('Non puoi inserire un tempo minore di 0');
+    else{
+       if(Temposec >= 3600) {
+            do{
+                Temposec=Temposec-3600;
+                ore=ore+1;
+            }while (Temposec > 3600);
+       }
+
+        if(Temposec >=60){
+            do{
+                Temposec=Temposec-60;
+                min=min+1;
+            }while (Temposec >= 60);
+    }
+
+        if(Temposec < 60)
+            sec=Temposec;
+        }
+  
+    alert("ore: "+ore+"     minuti: "+min+"     secondi: "+sec);
+    
+        </script>
+    </body>
+
+
+</html>

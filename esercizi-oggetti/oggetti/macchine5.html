@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title>Macchine 5</title>
+  </head>
+  <body>
+    <div class="container">
+    <br>
+    <h2>Macchine</h2>
+      <form>
+        <div class="form-group">
+          <input type="text" class="form-control" id="marca" placeholder="Inserisci la marca dell'auto">
+        </div>
+        <div class="form-group">     
+          <input type="text" class="form-control" id="modello" placeholder="Inserisci il modello dell'auto">
+        </div> 
+        <div class="form-group">     
+          <input type="text" class="form-control" id="colore" placeholder="Inserisci il colore dell'auto">
+        </div> 
+        <div class="form-group">     
+          <input type="text" class="form-control" id="anno" placeholder="Inserisci l'anno dell'auto">
+        </div> 
+        <div class="form-group">     
+          <input type="text" class="form-control" id="targa" placeholder="Inserisci la targa dell'auto">
+        </div> 
+
+        <button type="button" onclick="inviaForm()" class="btn btn-primary">Invia</button>
+      </form> 
+      <br>
+       <div id="output">
+       
+       </div>
+
+    </div>
+
+    <script>
+
+ 
+    let marca,modello,colore,anno,targa;
+    let garage = new Garage();
+    
+    function Automobile(marca,modello,colore,anno,targa){
+      this.marca=marca;
+      this.modello=modello;
+      this.colore=colore;
+      this.anno=anno;
+      this.targa=targa;
+      this.tutto=function(){
+        return this.marca+" "+this.modello+" " + this.colore+" " + this.anno+" "+ this.targa ;
+      }
+     }
+
+      function Garage() {
+        this.macchine= new Array();
+        this.push=function (macchina){
+          this.macchine.push(macchina);
+          return true;
+        }
+        this.cercaMacchina = function(targa) {
+          for (let i=0;i<this.macchine.length;i++) 
+            if (this.macchine[i].targa==targa)
+              return i;
+         return -1;
+        }
+        this.pop = function (targa){
+         for (let i=0;i<this.macchine.length;i++) 
+            if (this.macchine[i].targa==targa) 
+                return this.macchine[i];       
+        return false;
+        }
+        this.tutto=function() {
+          return this.macchine;
+        }  
+      }
+
+    function controllaForm() {
+      marca=document.getElementById("marca").value;
+      modello=document.getElementById("modello").value;
+      colore=document.getElementById("colore").value;
+      anno=document.getElementById("anno").value;
+      targa=document.getElementById("targa").value;
+      if ((marca=='')||(modello=='')||(colore=='')||(anno=='')||(targa==''))
+        return false;
+      else
+        return true;
+    }
+
+    function inviaForm() {
+      if (controllaForm() && garage.cercaMacchina(targa)==-1){
+        let car = new Automobile(marca,modello, colore,anno,targa);
+        garage.push(car);
+        aggiornaTabella();
+        console.table(garage.tutto());
+      }
+      else {
+        alert("Devi compilare tutti i campi oppure la macchina è già inserita"); 
+      }
+    }
+//\\serverwin\didattica\2019-2020\4Ci\TPS\javascript\oggetti
+    function aggiornaTabella() {
+      let tab=`
+      <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Marca</th>
+              <th scope="col">Modello</th>
+              <th scope="col">Colore</th>
+              <th scope="col">Anno</th>
+              <th scope="col">Targa</th>
+            </tr>
+          </thead>
+          <tbody>`;
+            let tab1='';
+            for (let i=0;i<garage.macchine.length;i++) {
+              //template literal
+              tab1+=`<tr>
+                    <th scope="row">${i+1}</th>
+                    <td>${garage.macchine[i].marca}</td>
+                    <td>${garage.macchine[i].modello}</td>
+                    <td>${garage.macchine[i].colore}</td>
+                    <td>${garage.macchine[i].anno}</td>
+                    <td>${garage.macchine[i].targa}</td>
+                  </tr>`
+            }
+          let tab2=`  
+          </tbody>
+        </table>`;
+      document.getElementById("output").innerHTML=tab+tab1+tab2;
+    }
+   
+    </script>
+    </body>
+</html>

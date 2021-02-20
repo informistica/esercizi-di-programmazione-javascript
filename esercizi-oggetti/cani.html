@@ -1,0 +1,41 @@
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+     <title>Document</title>
+ </head>
+ <body>
+     
+ </body>
+ </html>
+ <script>
+ function Animal(name){  
+    //console.log(this);
+    this.name = name || 'non definito';
+    this.type ='Animal';
+    this.abitat ='Terra';
+  }
+
+var cane1 = new  Animal('Cane1');
+var cane2 = new  Animal('Cane2');
+var cani = new Array();
+cani.push(cane1);
+cani.push(cane2);
+//cani[0]=cane1;
+//cani[1]=cane2;
+console.log(cani.length);
+//for (var animale in cani) {
+
+for (var i=0;i<cani.length;i++) {
+  console.log(cani[i].name);
+}
+
+ 
+
+//console.log(abitat);
+
+//console.log(window.abitat);
+
+</script>

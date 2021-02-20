@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>DOM : Document Object Model</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            .tRed, table.tRed{
+                border: 1px solid red;
+            }
+            .tRed  tr:nth-child(odd) td {
+                color: black
+            }
+        </style>
+        <script>
+          document.addEventListener('DOMContentLoaded', function(){
+              // background-color
+              // backgroundColor
+            //  document.body.style.backgroundColor ='red';
+            var b = document.getElementsByTagName('body');
+                b[0].style.color='green';
+              
+              var tables = document.getElementsByTagName('table');
+            for(var i =0 ; tables[i]; i++){
+                tables[i].className='tRed';
+            }
+              
+          });
+          
+         
+               
+        </script>
+          
+    </head>
+    <body>
+        <div>
+            <h1>DOM : Document Object Model</h1>
+            <p>
+                
+            </p>
+            <table border="1">
+                <tr><th>Property</th><th>Description</th></tr>
+                <tr>
+                    <td>document</td><td>Root document</td>
+                </tr>
+                  <tr>
+                    <td>element</td><td>A document element</td>
+                </tr>
+                
+                  <tr>
+                    <td>nodelist</td><td>a list of elements</td>
+                </tr>
+                
+                  <tr>
+                    <td>attributes</td><td>element's attribute</td>
+                </tr>
+            </table>
+            <table>
+                <tr><td>val1</td></tr>
+            </table>
+        </div>
+    </body>
+    
+</html>
