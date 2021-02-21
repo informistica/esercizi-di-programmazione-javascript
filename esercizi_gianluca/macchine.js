@@ -12,20 +12,25 @@ const targhe = [];
 // };
 
 function handleButton(evt) {
+  console.log("Tipo di evento generato:")
+  console.log(evt)
   const btn = evt.target; //Prendo il pulsante che ha generato l'evento
-  //btn->colonna->riga
-  let tr = btn.parentNode.parentNode;
-  const indice = tr.children[0].innerText - 1;
+  let td =  btn.parentNode //colonna a cui appartiene btn
+  let tr = td.parentNode // riga a cui appartiene btn
+  let tabella=tr.parentNode //tabella a cui appartiene btn
+  tabella.removeChild(tr) //rimuove la riga che contiene btn
+  const riga = tr.children[0].innerText; //Posizione della riga a cui appartiene btn
+  const indice = riga - 1; //Indice da rimuovere negli array  
   marche.splice(indice, 1);
   modelli.splice(indice, 1);
   colori.splice(indice, 1);
   anni.splice(indice, 1);
   targhe.splice(indice, 1);
-  const tabella = tr.parentNode;
-  tabella.removeChild(tr); //Elimino la riga da eliminare
-  tr = tabella.children;
-  for (let i = 1; i < tr.length; i++)
-    tr[i].children[0].innerText = i;
+   
+  tr = tabella.children; //Prendo le righe della tabella
+  for (let i = 1; i < tr.length; i++) 
+    tr[i].children[0].innerText = i; //aggiorno l'indice delle riga
+    
 }
 
 function inserisci() {

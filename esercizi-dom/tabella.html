@@ -71,7 +71,6 @@ function handleButton(evt) {
 //dall'evento generato risale l'albero fino alla tabella
 //bottone->cella -> riga -> tabella
             let ele = evt.target; //btn che ha generato l'evento
-                 
              let td =  ele.parentNode //colonna a cui appartiene btn
              let tr = td.parentNode // riga a cui appartiene btn
              let tabella=tr.parentNode //tabella a cui appartiene btn
