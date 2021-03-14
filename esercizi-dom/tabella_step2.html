@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabella dinamica</title>
+     <!-- Bootstrap CSS -->
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <div id="output">
+
+    </div>
+</div>
+</body>
+</html>
+
+<script>
+//step 2 : creare una tabella con una riga e tre colonne, la terza colonna contiene un bottone con un listern per il click 
+
+let tablearea = document.getElementById('output');  //riferimento al div in cui mostro la tabella
+
+let table = document.createElement('table');        //creo la tabella
+
+let numCol=4,numRow=10;
+
+for (let i = 0; i < numRow; i++) {
+  tr = document.createElement('tr');
+  for (let j = 0; j < numCol; j++) {
+    tr.appendChild(document.createElement('td') );
+    tr.cells[j].appendChild(document.createTextNode('Testo '+i+j))
+    //alternativa : aggiungo alla cella della tabella il suo html
+    //tr.cells[j].innerHTML='Text '+i+j;
+  } 
+  let btn=document.createElement('button');
+  btn.setAttribute('id',i);
+  btn.className='btn btn-danger';
+  btn.appendChild(document.createTextNode('Elimina'))  
+  btn.addEventListener('click',handleButton,true)
+  let td=document.createElement('td');
+  td.appendChild(btn);
+  tr.appendChild(td)
+  table.appendChild(tr);
+}
+
+table.className="table border";                     //assegno la classe bootstrap per lo stile
+
+tablearea.appendChild(table);                       //collego la tabella all'area di output 
+
+function handleButton(e) {
+    let conferma = confirm("Vuoi cancellare la riga "+ e.target.id +" ?");
+        if (conferma===true) {     
+             let ele = e.target;  
+             let td =  ele.parentNode;  
+             let tr = td.parentNode;  
+             let tabella=tr.parentNode;  
+             tabella.removeChild(tr); 
+             // tabella.removeChild(ele.parentNode.parentNode)
+            }
+         }
+</script>
+
+
+

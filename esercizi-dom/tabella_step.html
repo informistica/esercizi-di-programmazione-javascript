@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabella dinamica</title>
+     <!-- Bootstrap CSS -->
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"></head>
+<body>
+<div class="container">
+    <div id="output">
+        <!--qui mostriamo la tabella-->
+    </div>
+</div>
+</body>
+</html>
+<script>
+//step 1 : creare una tabella con una riga e tre colonne, l'ultima colonna contiene un bottone con un eventlistener
+let tablearea = document.getElementById('output');  //riferimento al div in cui mostro la tabella
+let table = document.createElement('table');        //creo la tabella
+let tr1 = document.createElement('tr');             //creo la 1 riga
+let tc1 = document.createElement('td');             //creo la 1 colonna
+let txt1= document.createTextNode('testo di riga 1 colonna 1'); // creo nodo di testo
+let tc2 = document.createElement('td');             //creo la 2 colonna
+let txt2= document.createTextNode('testo di riga 1 colonna 2');   // creo nodo di testo
+let btn1=document.createElement('button');          //creo il bottone
+btn1.setAttribute('id',1);                           //setto l'attributo id
+btn1.className='btn btn-danger';                     //assegno la classe bootstrap per lo stile
+btn1.appendChild(document.createTextNode('Elimina')) //assegno il testo da visualizzare nel bottone 
+btn1.addEventListener('click',handleButton,true);
+
+tc1.appendChild(txt1);                              //collego il nodo di testo 1 al nodo colonna 1
+tr1.appendChild(tc1);                               //collego il nodo colonna 1 al nodo riga 
+tc2.appendChild(txt2);                              //collego il nodo di testo 2 al nodo colonna 2
+tr1.appendChild(tc2);                               //collego il nodo colonna 2 al nodo riga 
+tr1.appendChild(btn1);                              //collego il nodo colonna 2 al nodo riga 
+table.appendChild(tr1);                             //collego la riga alla tabella
+table.className="table border";                     //assegno la classe bootstrap per lo stile
+tablearea.appendChild(table);                       //collego la tabella all'area di output 
+
+function handleButton(e) {
+    let conferma = confirm("Vuoi cancellare la riga "+ e.target.id +" ?");
+        if (conferma===true) {     
+             let ele = e.target;  
+             let td =  ele.parentNode;  
+             let tr = td.parentNode;  
+             let tabella=tr.parentNode;  
+             tabella.removeChild(tr); 
+             // tabella.removeChild(ele.parentNode.parentNode)
+            }
+         }
+</script>
+
+
+

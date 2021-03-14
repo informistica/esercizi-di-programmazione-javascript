@@ -23,10 +23,15 @@ document.body.appendChild(h1);
                                       // Appende al body l'elento <H1>
 
 var ul = document.createElement("ul")                // Crea elmento <h1> 
-var li = document.createElement("li") 
-var t1 = document.createTextNode("Hello");               // Create nodo di testo 
-li.appendChild(t1); 
-ul.appendChild(li);                                   // Appende ad <H1> il testo
+var li1 = document.createElement("li") 
+var t1 = document.createTextNode("Hello");               // Create nodo di testo
+var li2 = document.createElement("li") 
+var t2 = document.createTextNode("World");  
+li1.appendChild(t1); 
+li2.appendChild(t2); 
+ul.appendChild(li1); 
+ul.appendChild(li2); 
+                                  // Appende ad <H1> il testo
 document.body.appendChild(ul); 
 
 

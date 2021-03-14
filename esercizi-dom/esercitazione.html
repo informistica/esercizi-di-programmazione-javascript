@@ -1,0 +1,71 @@
+<!--
+Scrivere uno script che:
+1.ogni volta che il puntatore passa su un qualsiasi elemento div, questo cambia colore,ovvero se il colore attuale è black, passa al colore rosso, e viceversa;
+2.ogni volta che l’utente clicca su un qualsiasi elemento di classe c1, questo diventa di colore blu;
+3.ogni volta che l’utente fa doppio click su un qualsiasi elemento di classe c1, questosparisce;
+4.ogni volta che l’utente clicca su un qualsiasi elemento span di classe c2, questo elemento diventa di colore verde.
+
+Utilizza:
+document.getElementsByTagName("div")
+document.getElementsByClassName("c1")
+document.querySelectorAll("span.c2")
+Assegna un EventListener ad ogni elemento per gestire gli eventi (mouseover,mouseout,click,doubleclik) e svolgere l'azione indicata. 
+-->
+
+<!DOCTYPE html>
+<html>
+<script>
+function cambiaColore(e) {
+    if (e.target.style.color == "red") 
+        e.target.style.color = "black"; 
+    else 
+        e.target.style.color = "red";
+}
+
+function nascondi(e) {
+   // e.target.style.visibility = "hidden";
+    e.target.style.display = "hidden";
+}
+
+function coloraVerde(e) {
+    e.target.style.color = "green"; 
+}
+
+function coloraBlu(e) {
+    e.target.style.color = "blue";
+}
+
+function ripristinaColore(e) {
+    e.target.style.color = "black";
+}
+
+function assegnaEventHandlers() {
+    var divDoc = document.getElementsByTagName("div");
+    for (i = 0; i < divDoc.length; i++) 
+        divDoc[i].addEventListener("mouseover", cambiaColore);
+    var class1 = document.getElementsByClassName("c1");
+    for (i = 0; i < class1.length; i++) {
+        class1[i].addEventListener("click", coloraBlu);
+        class1[i].addEventListener("dblclick", nascondi);
+    }
+    var span2 = document.querySelectorAll("span.c2");
+    for (i = 0; i < span2.length; i++) {
+        span2[i].addEventListener("mouseover", coloraVerde);
+        span2[i].addEventListener("mouseout", ripristinaColore);
+    }
+}</script>
+</head>
+<body onload="assegnaEventHandlers();">
+    <div>Div 1</div>
+    <div>Div 2</div>
+    <div>Div 3</div>
+    <span class="c1">Primo span classe 1</span><br/>
+    <span class="c2">Primo span classe 2</span><br/>
+    <span class="c1">Secondo span classe 1</span><br/>
+    <span class="c2">Secondo span classe 2</span><br/>
+    <span class="c1">Terzo span classe 1</span><br/>
+    <span class="c2">Terzo span classe 2</span>
+    <div class="c1">Questo un div di classe 1</div>
+    <div class="c2">Questo un div di classe 2</div>
+</body>
+</html>

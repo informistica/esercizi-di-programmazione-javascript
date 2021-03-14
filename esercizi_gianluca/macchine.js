@@ -25,12 +25,10 @@ function handleButton(evt) {
   modelli.splice(indice, 1);
   colori.splice(indice, 1);
   anni.splice(indice, 1);
-  targhe.splice(indice, 1);
-   
+  targhe.splice(indice, 1); 
   tr = tabella.children; //Prendo le righe della tabella
   for (let i = 1; i < tr.length; i++) 
-    tr[i].children[0].innerText = i; //aggiorno l'indice delle riga
-    
+    tr[i].children[0].innerText = i; //aggiorno l'indice delle riga 
 }
 
 function inserisci() {
