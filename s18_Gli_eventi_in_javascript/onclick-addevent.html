@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>onclick event</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+<body>
+<div class="container">
+ <form class="col-md-6 push-md-3" id="form">
+     <h2>Registration form</h2>
+     <div class="form-group">
+         <label class="col-form-label" for="name">Nome</label>
+         <input class="form-control" id="name" name="name">
+     </div>
+     <div  class="form-group">
+         <label  class="col-form-label"  for="lastname">CogNome</label>
+         <input  class="form-control" id="lastname" name="lastname">
+     </div>
+     <div  class="form-group">
+         <button class="btn btn-success">Submit</button>
+     </div>
+
+ </form>
+</div>
+</body>
+</html>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+       
+       //var f = document.querySelector('#form');
+       var f = document.getElementById("form");
+       /*
+        f.onsubmit = function (e) {
+           e.preventDefault();
+           var t = e.target;
+             t.style.border ='1px solid red';
+          alert( e.target.name.value);
+        };
+        */
+        function handleForm(evt) {
+            evt.preventDefault();
+            evt.target.style.border="2px solid green";
+
+        }
+       f.addEventListener('submit' ,handleForm);
+       f.removeEventListener('submit', handleForm);
+    });
+   </script>

@@ -1,0 +1,75 @@
+ 
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Evento onchange</title>
+ </head>
+ <body>
+    <p>
+        Mio input:
+        <input id="testo" type="text" placeholder="Scrivi qualcosa" size="50">
+    </p>
+    <p id="log">
+        Mio output:
+    </p>
+    <button id="btn" type="button">Cliccami</button>
+ </body>
+ </html>
+
+<script>
+let mioOutput = document.getElementById('log');
+let mioInput = document.getElementById('testo');
+// MODO 1 
+//mioInput.onchange = handleChange;
+mioInput.oninput = handleChange;
+//testo.onchange = handleChange;  
+function handleChange(e) {
+    console.log("Evento generato:");
+    console.log(e);
+    console.log("Elemento che ha generato l'evento:");
+    console.log(e.target);
+    console.log("Valore dell'elemento che ha generato l'evento:");
+    console.log(e.target.value);
+    e.target.value = e.target.value.toUpperCase();
+    mioOutput.innerText = ` L'oggetto mioInput contiene ${e.target.value.length} caratteri `;
+   // log.innerText = ` L'oggetto mioInput contiene ${e.target.value.length} caratteri`; 
+    e.target.style.border='2px solid red'
+}  
+// MODO 2: In alternativa l'event listener si può scrivere anche in forma più compatta
+/*
+mioInput.onchange = function handleChange(e) {
+    e.target.value = e.target.value.toUpperCase();
+    log.innerText += ` L'oggetto mioInput contiene ${e.target.value.length} caratteri`;
+    e.target.style.border='2px solid red'
+}
+*/
+// MODO 3 : notare che in questo modo non bisogna mettere il prefisso on all'evento ma solo il nome (change)  
+/*
+mioInput.addEventListener('change',function (e) {
+    e.target.value = e.target.value.toUpperCase();
+    log.innerText = `L'oggetto mioInput contiene ${e.target.value.length} caratteri`;
+    e.target.style.border='2px solid red'
+});
+*/
+ /* riferimeno in base all'id
+testo.addEventListener('change',function (e) {  
+    e.target.value = e.target.value.toUpperCase();
+    log.innerText = `L'oggetto mioInput contiene ${e.target.value.length} caratteri`;
+    e.target.style.border='2px solid red'
+});
+*/
+
+btn.addEventListener('click',function (e) {  
+    console.log("Evento generato:");
+    console.log(e);
+    console.log("Elemento che ha generato l'evento:");
+    console.log(e.target);
+    console.log("ID Elemento che ha generato l'evento:");
+    console.log(e.target.id);
+});
+
+//https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onchange
+ </script>
+ 

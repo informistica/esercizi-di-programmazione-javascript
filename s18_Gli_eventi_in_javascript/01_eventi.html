@@ -1,0 +1,90 @@
+ 
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Evento onchange</title>
+ </head>
+ <body>
+    <p>Mio input:
+        <input id="testo" type="text" placeholder="Scrivi qualcosa" size="50">
+    </p>
+    <p id="log">
+        Mio output:
+    </p>
+ </body>
+ </html>
+
+<script>
+
+//prendo il riferimento all'input text da cui leggere l'input
+let mioInput = document.getElementById('testo');
+
+//prendo il riferimento al paragrafo in cui mostrare l'output
+let mioOutput = document.getElementById('log');
+
+
+//assegno alla funzione handleChange il compito di gestire l'evento onchange: 3 MODI  
+
+//MODO 1 
+
+//mioInput.onchange = handleChange;
+//testo.onchange = handleChange;   //posso utilizzare direttamente l'id 
+/*
+function handleChange(e) {
+    //mostro l'evento che è stato generato
+    console.log(e);
+
+    //mostro l'oggetto che ha generato l'evento
+    console.log(e.target);
+
+    //mostro la lunghezza del testo contenuto nell'oggetto che ha generato l'evento
+    console.log(e.target.value);
+
+    //trasformo il testo dell'oggetto che ha generato l'evento in maiuscolo
+    e.target.value = e.target.value.toUpperCase();
+
+    //assegno l'output in maiuscolo al paragrafo utilizzando un template literal 
+    mioOutput.innerText = ` L'oggetto mioInput contiene ${e.target.value.length} caratteri `;
+   // log.innerText = ` L'oggetto mioInput contiene ${e.target.value.length} caratteri`; //posso utilizzare direttamente l'id 
+
+    //cambio lo stile del bordo dell'oggetto
+    e.target.style.border='2px solid red';
+    
+} */
+
+// Oppure in alternativa l'event listener si può scrivere anche in forma più compatta
+// MODO 2
+ 
+ /*
+mioInput.onchange = function handleChange(e) {
+    e.target.value = e.target.value.toUpperCase();
+    log.innerText = ` L'oggetto mioInput contiene ${e.target.value.length} caratteri`;
+    e.target.style.border='2px solid red'
+}
+ */
+ 
+// MODO 3 
+//notare che in questo modo non bisogna mettere il prefisso on all'evento ma solo il nome (change)  
+
+mioInput.addEventListener('change',function (e) {
+    e.target.value = e.target.value.toUpperCase();
+    log.innerText = `L'oggetto mioInput contiene ${e.target.value.length} caratteri`;
+    e.target.style.border='2px solid red'
+
+});
+
+ /*
+testo.addEventListener('change',function (e) {  
+    e.target.value = e.target.value.toUpperCase();
+    log.innerText = `L'oggetto mioInput contiene ${e.target.value.length} caratteri`;
+    e.target.style.border='2px solid red'
+});
+*/
+
+
+
+//https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onchange
+ </script>
+ 

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Parent Child</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script>
+        document.addEventListener('DOMContentLoaded', function () {
+        var doc = document;
+        var container = doc.querySelector('#container');
+        container.parentNode.style.background='#c0c0c0';
+         //container.parentNode.removeChild(container);
+        console.log(container.firstChild)
+        console.log(container.firstElementChild);
+        var section = container.firstElementChild;
+        var section2 = section.cloneNode(true)
+        container.appendChild(section2)
+        });
+ 
+        </script>
+    </head>
+    <body>
+        <div id="container">
+            <section>
+                <article>
+                    <header>
+                        <h1>This is a head article</h1>
+                        <p>
+                            I'm a paragraph inside a header<br>
+                        </p>
+                    </header>
+                </article>
+            </section>
+            
+        </div>
+    </body>
+</html>

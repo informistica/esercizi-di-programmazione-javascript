@@ -1,0 +1,44 @@
+<!doctype html>
+<body>
+<style>
+  body * {
+    margin: 10px;
+    border: 1px solid blue;
+  }
+</style>
+ 
+
+<form id="f">FORM
+  <div id="d">DIV
+    <p id="p">P</p>
+  </div>
+</form>
+ <script>
+
+function handleForm(evt) {
+            alert("form");
+            alert("evt.target.id="+evt.target.id);
+            evt.target.style.border="2px solid green";
+        }
+
+function handleDiv(evt) {
+            alert("div");
+            alert("evt.target.id="+evt.target.id);
+            evt.target.style.border="2px solid green";
+        }
+
+function handleP(evt) {
+            alert("p");
+            alert("evt.target.id="+evt.target.id);
+            evt.target.style.border="2px solid green";
+
+        }
+//true=capture false=bubble
+f.addEventListener("click", handleForm,true);
+d.addEventListener("click", handleDiv,true);
+p.addEventListener("click", handleP,true);
+
+
+
+ </script>
+</body>

@@ -1,0 +1,40 @@
+ 
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Eventi</title>
+ </head>
+ <body>
+    <div id="demo" >Click here</div>
+ </body>
+ </html>
+<!--https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onchange-->
+
+<script>
+let output=document.getElementById('demo');
+    //output.onmouseover= function (e) {
+    demo.onmouseover= function (e) {
+        e.target.style.border='2px solid blue';
+        document.getElementById('demo').innerHTML = "Mouse over";
+        document.getElementById('demo').style = "Color: blue";
+    };
+    //da notare che in questo modo non bisogna mettere il prefisso on all'evento ma solo il nome (mouseout)
+    output.addEventListener('mouseout',function (e) {
+        e.target.style.border='2px solid orange';
+        document.getElementById('demo').innerHTML = "Mouse out ";
+        document.getElementById('demo').style = "Color: orange";
+    });
+    output.addEventListener('click',function (e) {
+        e.target.style.border='2px solid red';
+        document.getElementById('demo').innerHTML = "Click";
+        document.getElementById('demo').style = "Color: red";
+    });
+    output.addEventListener('dblclick',function (e) {
+        e.target.style.border='2px solid green';
+        document.getElementById('demo').innerHTML = "Doppio click ";
+        document.getElementById('demo').style = "Color: green";
+    });
+ </script>
+ 

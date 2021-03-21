@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>onclick event</title>
+   
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+ <form class="col-md-6 push-md-3">
+     <h2>Registration form</h2>
+     <div class="form-group">
+         <label class="col-form-label" for="nome">Nome</label>
+         <input class="form-control"  id="nome" name="nome">
+     </div>
+     <div  class="form-group">
+         <label  class="col-form-label"  for="cognome">Cognome</label>
+         <input  class="form-control" id="cognome" name="cognome">
+     </div>
+     <div  class="form-group">
+         <button class="btn btn-success">Submit</button>
+     </div>
+ </form>
+</div>
+<script>
+        // creo un riferimento al primo form presente nella pagina
+        let frm=document.querySelector('form');
+       
+        //aggiungo il listerner per l'evento submit (invio) form
+        frm.addEventListener('submit',function (e) {
+       
+                //blocca il comportamento di default: pagina reload
+                e.preventDefault();
+            
+                //validazione input
+                let nome=document.getElementById("nome");
+                let cognome=document.getElementById("cognome");
+                if (nome.value=='' || cognome.value==''){
+                    alert('Devi compilare tutti i campi')
+                    e.target.style.border='2px solid red';
+                    if (nome.value=='')  
+                        nome.style.border='2px solid red';
+                    if (cognome.value=='')  
+                        cognome.style.border='2px solid red';
+                } else {
+                    //gestione dati
+                    alert("Il form può essere inviato! Controlla la console");
+                    frm.style.border='2px solid green';
+                    nome.style.border='2px solid green';
+                    cognome.style.border='2px solid green';
+                    console.log("Invio : "+ cognome.value + " " + nome.value);
+                }
+                //console.dir(e);
+                //return false;
+        });
+    
+        function handleClick(ele) {
+            console.log(ele)
+            console.log(ele.value)
+            ele.value = ele.value.toUpperCase(); 
+        }
+        /*
+        function handleForm(f) {
+            alert(f.name.value);
+            return false;
+        }
+
+ */
+    /*
+    document.querySelector('button').onclick = function (ev) {
+    
+        console.dir(ev);
+        
+    }
+   */
+</script>
+</body>
+</html>

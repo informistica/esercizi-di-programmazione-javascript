@@ -1,0 +1,18 @@
+<html>
+<head>
+<title>esempio sul parametro evento</title>
+</head>
+<body>
+<p>Per conoscere le coordinate della posizione del mouse, clicca in qualunque punto di questa pagina.</p>
+<p id="log"></p>
+</body>
+<script type="text/javascript">
+   //https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onclick
+   
+   let log = document.getElementById('log');
+   document.onclick = inputChange;
+   function inputChange(e) {
+     log.textContent = `Position: (${e.clientX}, ${e.clientY})`;
+   }
+   </script>
+</html>

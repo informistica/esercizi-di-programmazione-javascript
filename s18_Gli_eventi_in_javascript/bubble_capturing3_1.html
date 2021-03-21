@@ -1,0 +1,44 @@
+<!doctype html>
+<body>
+<style>
+  body * {
+    margin: 10px;
+    border: 1px solid blue;
+  }
+</style>
+ 
+
+<form id="f">FORM
+  <div id="d">DIV
+    <p id="p">P</p>
+    <p id="p1">P1</p>
+  </div>
+</form>
+ <script>
+
+function handleForm(evt) {
+            alert("evt.target.id="+evt.target.id);
+            evt.target.style.border="2px solid green";
+            switch (evt.target.id){
+                case 'p':
+                    alert("Cliccato P");
+                    break;
+                case 'p1':
+                    alert("Cliccato P1");
+                    break;
+                case 'd':
+                    alert("Cliccato DIV");
+                    break;
+                case 'f':
+                    alert("Cliccato FORM");
+                    break;
+            }
+        }
+
+f.addEventListener("click", handleForm,true);
+ 
+
+
+
+ </script>
+</body>

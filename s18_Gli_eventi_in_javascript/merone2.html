@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progetto Eventi</title>
+</head>
+<body>
+    <p>input: 
+        <input id="testo" type="text" placeholder="immetti frase" size="50" >
+    </p>
+    <p id="log">
+        output: 
+    </p>
+</body>
+</html>
+<script>
+
+let input=document.getElementById('testo');
+let output=document.getElementById('log');//queste due variabili ci servono come collegamento con l'html
+
+//modo1: creiamo la funzione che per l'appunto ci permette tramite diverse propeietà (come la .value) di capire quanti caratteri contiene una stringa
+function handleChange(e){
+    console.log(e); 
+    console.log(e.target); 
+    console.log(e.target.value); //i 3 console.log sono a scopo dimostrativo
+    e.target.value= e.target.value.toUpperCase(); //utilizzando il metodo toUpperCase poniamo tutto l'input in maiuscolo 
+    output.innerText= `oggetto output contiene ${e.target.value.length} caratteri`; //grazie al template literal possiamo inserire questa stringa direttamente nell'html, sfruttanfo l' .innertext
+    e.target.style.border='2px solid blue'; //grazie a questo metodo possiamo  cambiare il colore dei bordi
+}
+
+//modo 2: 
+/*
+input.onchange=function handleChange(e){ 
+    e.target.value= e.target.value.toUpperCase();
+    log.innerText=`oggetto output contiene ${e.target.value.length} caratteri`;
+    e.target.style.border='2px solid blue'; //grazie a questo metodo possiamo  cambiare il colore dei bordi
+}*/
+
+//modo 3
+//in questo modo assegnamo la funzione direttamente all'input attraverso un eventListener
+/* 
+input.addEventListener('change', function(e){
+    e.target.value= e.target.value.toUpperCase();
+    log.innerText=`oggetto output contiene ${e.target.value.length} caratteri`;
+    e.target.style.border='2px solid red'; 
+});*/
+//modo 4
+//in questo modo assegnamo la funzione direttamente al testo presente nell'html, sempre usano un event Listener
+/*
+testo.addEventListener('change', function(e){
+    e.target.value= e.target.value.toUpperCase();
+    log.innerText=`oggetto output contiene ${e.target.value.length} caratteri`;
+    e.target.style.border='2px solid red'; 
+});*/
+
+
+</script>

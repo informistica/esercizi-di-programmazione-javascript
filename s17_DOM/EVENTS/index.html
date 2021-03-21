@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>events</title>
+    <style>
+        div{width:200px; border:1px solid red;height: 40px}
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+         var ele=   document.getElementById('main');
+         ele.addEventListener('click', function (evt) {
+             console.log(evt)
+            evt.target.innerHTML ='clicked'+evt.detail
+         });
+        });
+    </script>
+</head>
+<body>
+<div id="main"></div>
+<div id="parent">
+    <div id="children">
+        Click
+    </div>
+</div>
+<table id="table" border="1" width="400">
+    <tr id="tr">
+        <td id="td">
+            cliccc
+        </td>
+    </tr>
+</table>
+
+<script>
+    var parent = document.getElementById('parent'),
+        children = document.getElementById('children');
+
+    document.addEventListener('click', function (e) {
+        alert(e.target.id);
+        // e.stopPropagation();
+    }, false);
+
+   
+</script>
+</body>
+</html>

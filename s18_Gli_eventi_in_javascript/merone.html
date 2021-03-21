@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <input id="in1" type="text" placeholder="scrivi qualcosa qui per vederne la lunghezza" size="50">
+   
+    <p id="log"></p> 
+    <input id="in2" type="text" value="CLICK HERE">        
+
+    
+</body>
+<script>
+   
+        let input = document.querySelector('#in1');
+        let log = document.getElementById('log');
+        input.oninput = handleInput;
+        function handleInput(e) {
+        log.textContent = `The field's value is ${e.target.value.length} character(s) long.`;
+        }
+
+        /*  2  */
+
+        
+        function inputBlur() {
+            in2.value = 'Focus has been lost';
+        }
+        function inputFocus() {
+            in2.value = 'Focus is here';
+         }
+        in2.onblur = inputBlur;
+        in2.onfocus = inputFocus;
+
+     
+</script>
+</html>
